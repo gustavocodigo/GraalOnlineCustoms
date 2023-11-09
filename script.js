@@ -1,5 +1,5 @@
 const app = {
-    MAX_ELEMENTS: 50,
+    MAX_ELEMENTS: 35,
     currentPage: "body"
 }
 
@@ -7,11 +7,8 @@ const app = {
 
 
 let heads = []
-
-
-
-
 let bodys = []
+let matches =[]
 
 function main() {
   goto_head(0)
@@ -163,11 +160,23 @@ function set_aba(page) {
 }
 
 
+
+function macth_tab() {
+    document.querySelector("#uplist").innerHTML=`
+        <h2>Choose an body or head then click in MATCH</h1>
+        the potentially matches for the custom should appears here.
+        <b>To download matched files long press on it or right click on desktop.
+    `
+}
+
+
 function goto_page(page) {
     let selectedCOlor = "gray"
     
     document.getElementById("button-head").style.background ="#333333ff"
     document.getElementById("button-body").style.background ="#333333ff"
+    document.getElementById("button-match").style.background ="#333333ff"
+
     if (app.currentPage == "body") {
         goto_body(page)
         document.getElementById("button-body").style.background =selectedCOlor
@@ -176,6 +185,12 @@ function goto_page(page) {
         goto_head(page)
         document.getElementById("button-head").style.background =selectedCOlor
     }
+    if (app.currentPage == "match"){
+        macth_tab()
+        update_pagination(0)
+        document.getElementById("button-match").style.background =selectedCOlor
+    }
+
 
     document.querySelector("#uplist").scrollTop = 0
 }
@@ -195,9 +210,9 @@ function goto_body(page) {
 
         
         <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-            <img id="body" alt="" style="position:relative; left: -64px"  src="${element}" draggable="false">
+            <img id="body" alt="" style="position:relative; left: -64px"  src="${element}" draggable="false" cache-control="max-age=604800">
         </div>
-        <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
+        <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
             <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="">
         </div>
     </div>
@@ -229,10 +244,10 @@ function goto_head(page) {
 
         
         <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-            <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png">
+            <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
         </div>
         <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
-            <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false">
+            <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800">
         </div>
     </div>
         `
@@ -252,19 +267,164 @@ document.addEventListener("DOMContentLoaded", ()=> {
 });
 
 
+
+
+async function preload_matches() {
+    const bodys_id = bodys.map((e)=>{
+        // extract id
+        let m = e.match(/graal[^.]+/) 
+        return m == null ? false : m[0]
+    }).filter((e)=>e)
+
+    const heads_id = heads.map((e)=>{
+        if (!e)return;
+        // extract id
+        let m = e.match(/graal[^.]+/) 
+        return m == null ? false : m[0]
+    }).filter((e)=>e)
+
+
+    let players = {}
+
+    bodys_id.forEach((e)=>{
+        if (!e) return;
+        let id = ""
+        try {
+            id = e.split("-")[0]
+        }catch(err){
+            console.log(e, err)
+        }
+       
+        if (! players[id]){
+            players[id] = {}
+        }
+    })
+
+
+  
+
+    heads_id.forEach((e)=>{
+        if (!e) return;
+        let id = e.split("-")[0]
+        if (! players[id]) {
+            players[id] = {}
+        }
+    })
+
+    for(const id in players){
+        e = players[id]
+        if (!e) return;
+        e.bodys = []
+        e.heads = []
+
+        bodys.forEach((body)=>{
+            if (!body) return;
+            if ( body.includes(id)) {
+                e.bodys.push(body)
+            }
+        })
+
+        heads.forEach((head)=>{
+            if (!head) return;
+            if ( head.includes(id)) {
+                e.heads.push(head)
+            }
+        })
+    }
+
+
+    matches = players
+}
+
+
+
+function domatch_upload_click() {
+
+    let url = ""
+
+    if (app.currentPage == "body")
+        url = document.querySelector("#alert-out-body").querySelector("#body").getAttribute("src")
+    if (app.currentPage == "head")
+        url = document.querySelector("#alert-out").querySelector("#head").getAttribute("src")
+ 
+   
+    goto_page("match")
+    update_pagination(0)
+
+    if(domatch_upload(url)
+    ){
+
+        set_aba("match")
+    }
+}
+function domatch_upload(image) {
+     // extract id
+     let m = image.match(/graal[^.]+/) 
+     const id =  m == null ? false : m[0].split("-")[0]
+
+     let count = 0
+     
+     if (id) {
+       
+        if (matches[id]) {
+            let html = `
+            
+           
+            <div style="width:100%">
+            <h2>Choose an body or head then click in MATCH</h1>
+            the potentially matches for the custom should appears here.
+            </br><b>To download matched files long press on it or right click on desktop.<br>
+            <b style="color:red">Warning</b><b> the matche uses detuction on filename so look if it combine with the requested file</b>
+            </div>
+            <div style='display: flex; flex-wrap:wrap;'>
+            
+            
+            `
+            let player = matches[id]
+
+          
+
+            player.heads.forEach(element => {
+                html += `<div><img src="${element}"/></div>`
+                count++;
+            });
+
+            player.bodys.forEach(element => {
+                html += `<div><img src="${element}"/></div>`
+                count++;
+            });
+
+            html+="</div>"
+
+            if ( count > 1)
+                document.querySelector("#uplist").innerHTML = html
+            else
+                console.log("No matches for this custom")
+        }
+     }else{
+        console.log("No matches for this custom.")
+     }
+
+     return count > 1
+}
+
+
+
 (async function (){
     const data = await fetch("./bodys.json")
-    bodys = await data.json()
+    bodys =  (await data.json()).filter(e=>e)
    
 
     update_pagination(Math.ceil(bodys.length/app.MAX_ELEMENTS))
 
     
     const hdata =  await fetch("./heads.json")
-    heads = await hdata.json()
+    heads = (await hdata.json()).filter(e=>e)
     set_aba("head")
 
     goto_page(0)
+
+    preload_matches()
 })()
 
 
