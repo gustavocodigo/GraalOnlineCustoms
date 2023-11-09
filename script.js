@@ -396,10 +396,9 @@ function domatch_upload(image) {
 
             html+="</div>"
 
-            if ( count > 1)
-                document.querySelector("#uplist").innerHTML = html
-            else
-                console.log("No matches for this custom")
+            
+            document.querySelector("#uplist").innerHTML = html
+            
         }
      }else{
         console.log("No matches for this custom.")
