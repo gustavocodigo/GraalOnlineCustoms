@@ -224,3 +224,6 @@ main {
 
 
   
+  img {
+    image-rendering: pixelated;
+  }
