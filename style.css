@@ -243,3 +243,26 @@ main {
   button:hover {
     cursor:pointer;
   }
+
+
+  .head-img-loading {
+    background-image: url(https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif);
+    background-size: 100% ;
+    background-size: 60%;
+    background-position: center;
+    
+    border-radius: 20%;
+    background-repeat: no-repeat;
+  }
+
+
+  .body-img-loading {
+    background-image: url(https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif);
+    background-size: 100% ;
+    background-size: 60%;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.515);
+    
+    border-radius: 10%;
+    background-repeat: no-repeat;
+  }

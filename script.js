@@ -220,8 +220,10 @@ function goto_body(page) {
         <div style="height: 80px; cursor:pointer" onclick="open_alert('${element}','body')" class="hoverdark">
 
         
-        <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-            <img id="body" alt="" style="position:relative; left: -64px"  src="${element}" draggable="false" cache-control="max-age=604800">
+        <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
+        <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
+
+            <img id="body" alt="" style="position:relative; left: -64px"  src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
         </div>
         <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
             <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="">
@@ -281,7 +283,8 @@ function goto_head(page) {
                 <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
             </div>
             <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
-                <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800">
+                <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
+                <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
             </div>
             <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">GIF</h1>
         </div>
@@ -297,7 +300,8 @@ function goto_head(page) {
                 <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
             </div>
             <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
-                <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800">
+            <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
+            <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
             </div>
             <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">PNG</h1>
         </div>
