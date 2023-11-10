@@ -1,6 +1,12 @@
 const app = {
     MAX_ELEMENTS: 35,
-    currentPage: "body"
+    currentPage: "body",
+    currentHeadPage: 0,
+    currentBodyPage: 0,
+    currentTotalPages: 0
+    
+    
+    
 }
 
 
@@ -16,6 +22,7 @@ function main() {
 
 
 function update_pagination(totalpages, selected){
+    app.currentTotalPages = totalpages
     let html = ""
     for (let index = 0; index < totalpages; index++) {
         if ( selected == index ) {
@@ -151,10 +158,10 @@ let close_alert = () => {}
 
 function set_aba(page) {
     if (page == "head"){
-        update_pagination(Math.ceil(heads.length/app.MAX_ELEMENTS),0)
+        update_pagination(Math.ceil(heads.length/app.MAX_ELEMENTS), app.currentHeadPage)
     }
     if (page == "body"){
-        update_pagination(Math.ceil(bodys.length/app.MAX_ELEMENTS),0)
+        update_pagination(Math.ceil(bodys.length/app.MAX_ELEMENTS),app.currentBodyPage)
     }
     app.currentPage = page
 }
@@ -176,13 +183,16 @@ function goto_page(page) {
     document.getElementById("button-head").style.background ="#333333ff"
     document.getElementById("button-body").style.background ="#333333ff"
     document.getElementById("button-match").style.background ="#333333ff"
-
+    update_pagination(app.currentTotalPages, page)
     if (app.currentPage == "body") {
         goto_body(page)
+        
         document.getElementById("button-body").style.background =selectedCOlor
     }
     if (app.currentPage == "head"){
         goto_head(page)
+       
+
         document.getElementById("button-head").style.background =selectedCOlor
     }
     if (app.currentPage == "match"){
@@ -196,6 +206,7 @@ function goto_page(page) {
 }
 
 function goto_body(page) {
+    app.currentBodyPage = page
     let uplist = document.getElementById("uplist")
     
     let html = ""
@@ -235,6 +246,7 @@ function isGifFile(fileName) {
 
 
 function goto_head(page) {
+    app.currentHeadPage = page
     let html = ""
     /*<div class="uploadcard">
     <div style="width: 32px; height: 31px; overflow: hidden; margin: auto;">
@@ -283,6 +295,14 @@ function goto_head(page) {
         }
        
     });
+
+    if ( page+1 < app.currentTotalPages){
+    html+=`
+    <div style="display: flex;height: 20px;margin-left: auto; margin-top: auto;margin-bottom: auto; cursor:pointer; position: relative; justify-content: center; align-items:center; color: white; background-color: black;padding: 12px; font-size: 0.7em" onclick="goto_page(${app.currentHeadPage+1})">
+        NEXT
+    </div>
+    `
+    }
 
     document.getElementById("uplist").innerHTML = html
 }
@@ -386,7 +406,6 @@ function domatch_upload_click() {
         url = document.querySelector("#alert-out").querySelector("#head").getAttribute("src")
  
    
-    goto_page("match")
     update_pagination(0)
 
     if(domatch_upload(url)
