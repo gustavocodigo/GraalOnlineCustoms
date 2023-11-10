@@ -1,12 +1,9 @@
 const app = {
-    MAX_ELEMENTS: 35,
+    MAX_ELEMENTS: 80,
     currentPage: "body",
     currentHeadPage: 0,
     currentBodyPage: 0,
     currentTotalPages: 0
-    
-    
-    
 }
 
 
@@ -26,7 +23,7 @@ function update_pagination(totalpages, selected){
     let html = ""
     for (let index = 0; index < totalpages; index++) {
         if ( selected == index ) {
-            html = html + `<div onclick="" style="background-color: black; color: white">${index+1}</div>`
+            html = html + `<div onclick="" style="background-color: white; color: black">${index+1}</div>`
         }else
         html = html + `<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index+1}</div>`
     }
