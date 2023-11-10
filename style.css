@@ -198,7 +198,8 @@ main {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width:fit-content
+    width:fit-content;
+    min-width: 26px;
 }
 
 .pagination > div:hover{
