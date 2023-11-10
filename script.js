@@ -270,6 +270,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
 
 async function preload_matches() {
+    if (document.is_uploads_matched)return;
+
+    document.is_uploads_matched = true
+    let html = document.body.style.innerHTML
+    document.body.style.innerHTML = "loading.."
     const bodys_id = bodys.map((e)=>{
         // extract id
         let m = e.match(/graal[^.]+/) 
@@ -332,13 +337,15 @@ async function preload_matches() {
         })
     }
 
-
+    document.body.style.innerHTML = html
     matches = players
 }
 
 
 
 function domatch_upload_click() {
+
+    preload_matches()
 
     let url = ""
 
@@ -423,7 +430,7 @@ function domatch_upload(image) {
 
     goto_page(0)
 
-    preload_matches()
+    
 })()
 
 
