@@ -135,7 +135,7 @@ let close_alert = () => {}
                 return
             }
 
-            downloadFIle(url, null)
+            downloadFIle(url, btoa(Math.random()))
         }
         
 
