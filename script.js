@@ -224,6 +224,16 @@ function goto_body(page) {
 
 
 
+
+function isGifFile(fileName) {
+  if (fileName.toLowerCase().endsWith(".gif")) {
+    return true;
+  }
+  return false;
+}
+  
+
+
 function goto_head(page) {
     let html = ""
     /*<div class="uploadcard">
@@ -237,20 +247,41 @@ function goto_head(page) {
     let heads_sliced = heads.slice(page*app.MAX_ELEMENTS, (page+1)*app.MAX_ELEMENTS)
     heads_sliced.forEach(element => {
         if (!element)return;
-        html = html + `
+
+        if (isGifFile(extractFileNameFromURL(element))) {
+            html = html + `
        
 
-        <div style="height: 80px; cursor:pointer" onclick="open_alert('${element}','head')" class="hoverdark">
+            <div style="height: 80px; cursor:pointer; position: relative" onclick="open_alert('${element}','head')" class="hoverdark">
+    
+            
+            <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
+                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
+            </div>
+            <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
+                <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800">
+            </div>
+            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">GIF</h1>
+        </div>
+            `
+        }else{
+            html = html + `
+       
 
-        
-        <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-            <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
+            <div style="height: 80px; cursor:pointer; position: relative" onclick="open_alert('${element}','head')" class="hoverdark">
+    
+            
+            <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
+                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
+            </div>
+            <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
+                <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800">
+            </div>
+            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">PNG</h1>
         </div>
-        <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px ">
-            <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800">
-        </div>
-    </div>
-        `
+            `
+        }
+       
     });
 
     document.getElementById("uplist").innerHTML = html
