@@ -168,9 +168,12 @@ function set_aba(page) {
 
 function macth_tab() {
     document.querySelector("#uplist").innerHTML=`
+
+    <div>
         <h2>Choose an body or head then click in MATCH</h1>
         the potentially matches for the custom should appears here.
         <b>To download matched files long press on it or right click on desktop.
+    </div>
     `
 }
 
@@ -178,9 +181,13 @@ function macth_tab() {
 
 function tos_tab(){
     document.querySelector("#uplist").innerHTML=`
+
     <div>
-    <img width=40 src="https://images.saymedia-content.com/.image/t_share/MTgwMTE3ODg2NDU3ODE2NDA4/how-to-create-an-aesthetic-pfp-the-ultimate-guide.png">
-    </div>
+
+
+    <div style="line-height: 1.5;">
+    
+   
         <h1>Terms of services</h1>
         
         <p>This site aims to centralize hundreds of customizations into a single-page application</p>
@@ -204,10 +211,17 @@ function tos_tab(){
         <p>If you <b>agree</b> you can continue using this aplication if not feel free to leave.</p>
         <br>
 
-       
 
-       <button style="padding: 12px; margin-left: auto;" onclick="app.currentPage='head';set_aba('head');goto_page(0)"> AGREE</button>
-     
+    </div>
+    
+     <div class="margin-left: auto; width: 100%">
+
+     <button style="padding: 12px; display: block; margin-left: auto; " onclick="app.currentPage='head';set_aba('head');goto_page(0)" class="agree-tos-button"> AGREE</button>
+
+     </div>
+
+
+     </div>
     `
 }
 

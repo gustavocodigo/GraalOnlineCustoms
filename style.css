@@ -1,6 +1,7 @@
 
 body {
     min-height: 100svh;
+    
 }
 .download-div {
     gap: 12px
@@ -17,7 +18,7 @@ body {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(246, 244, 227);
+    background-color: rgb(210, 210, 205);
     display: flex;
     flex-direction: column;
     max-width: 800px;
@@ -26,7 +27,6 @@ body {
     max-height: 100svh;
     min-height: 100svh;
     user-select: none;
-
 }
 * {
     padding: 0;
@@ -52,9 +52,9 @@ main {
     gap: 12px;
     flex-wrap: wrap;
     padding: 12px;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(255, 255, 255);
+  
 
-    
     overflow-y: scroll;
 }
 
@@ -69,7 +69,15 @@ main {
 }
 
 
+#uplist{
+    
+background-color: rgb(45, 44, 44);
 
+color: rgb(188, 188, 188);
+flex: 1;
+
+background-size: 100% 100%;
+}
 
 .uploadbody {
     width: 34px;
@@ -126,6 +134,9 @@ main {
     justify-content: center;
     background-color: #333333ff;
     gap: 6px;
+
+
+    
     
 }
 
@@ -172,6 +183,20 @@ main {
 .alert img {
     margin: auto;
     display: block;
+}
+
+
+.alert  button {
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+}
+
+.alert button:hover {
+    background-color: rgb(55, 55, 55);
+
 }
 
 .pagination {
@@ -230,7 +255,7 @@ main {
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgb(48, 41, 41); 
+    background: rgba(97, 89, 89, 0.413); 
     border-radius: 10px;
   }
   
@@ -277,4 +302,14 @@ main {
     
     border-radius: 10%;
     background-repeat: no-repeat;
+  }
+
+
+
+  .agree-tos-button{
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 12px;
   }
