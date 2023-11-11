@@ -272,6 +272,8 @@ function goto_body(page) {
     bodys_n.forEach(element => {
         if (!element)return;
         html = html + `
+
+        <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
        
 
         <div style="height: 80px; cursor:pointer" onclick="open_alert('${element}','body')" class="hoverdark">
@@ -285,6 +287,8 @@ function goto_body(page) {
         <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
             <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="">
         </div>
+    </div>
+
     </div>
         `
     })
