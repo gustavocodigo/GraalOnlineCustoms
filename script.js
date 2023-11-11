@@ -183,12 +183,12 @@ function tos_tab(){
     </div>
         <h1>Terms of services</h1>
         
-        <p>This website have to goal to center thousands of custom in a single page aplication</p>
+        <p>This site aims to centralize hundreds of customizations into a single-page application</p>
         <br>
        
         <p style="word-wrap: break-word;">
        
-        <b style="color:red">Attention</b>This website offers skins for download. Please be aware that some of these skins could be personal, potentially leading to conflicts if used without the owners' permission. It's advisable to only download skins widely used and recognized by numerous players to avoid direct conflicts with others.
+        <b style="color:red">Attention</b> This website offers skins for download. Please be aware that some of these skins could be personal, potentially leading to conflicts if used without the owners' permission. It's advisable to only download skins widely used and recognized by numerous players to avoid direct conflicts with others.
         <br></br>
         <b>Please note</b> that the uploads are added automatically from the web, and distinguishing between personal and non-personal skins might be challenging."
         </p>
