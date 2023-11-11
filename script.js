@@ -189,6 +189,17 @@ function tos_tab(){
         <b>Please note</b> that the uploads are added automatically, and distinguishing between personal and non-personal skins might be challenging."
         </p>
 
+        <b>Tips to choose the Ideal upload</b>
+        <ul>
+            <li>1 - choose uploads without watermark</li>
+            <li>1 - if the water mark is a link then you can pick it :) this means was downloaded from a public website</li>
+            <li>3 - have you seen atleast 3 players using it ? well its public take it "</li>
+        </ul>
+
+        <b>I'm not responsable for any internal conflicts in game. choose graphics at you own risk</b>
+        <p>If you <b>agree</b> you can continue using this aplication if not feel free to leave.</p>
+        <br>
+
        <button style="padding: 12px; margin-left: auto;" onclick="app.currentPage='head';set_aba('head');goto_page(0)"> AGREE</button>
      
     `
@@ -330,7 +341,7 @@ function goto_head(page) {
             <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
             </div>
             <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">PNG</h1>
-        </div>
+            </div>
             `
         }
        
