@@ -15,6 +15,7 @@ let matches =[]
 
 function main() {
   goto_head(0)
+  
 }
 
 
@@ -174,12 +175,33 @@ function macth_tab() {
 }
 
 
+
+function tos_tab(){
+    document.querySelector("#uplist").innerHTML=`
+        <h1>Terms of services</h1>
+        <p>This website have to goal to center thousands of custom in a single page aplication</p>
+        <br>
+       
+        <p style="word-wrap: break-word;">
+       
+        <b style="color:red">Attention</b>This website offers skins for download. Please be aware that some of these skins could be personal, potentially leading to conflicts if used without the owners' permission. It's advisable to only download skins widely used and recognized by numerous players to avoid direct conflicts with others.
+        <br></br>
+        <b>Please note</b> that the uploads are added automatically, and distinguishing between personal and non-personal skins might be challenging."
+        </p>
+
+       <button style="padding: 12px; margin-left: auto;" onclick="app.currentPage='head';set_aba('head');goto_page(0)"> AGREE</button>
+     
+    `
+}
+
+
 function goto_page(page) {
     let selectedCOlor = "gray"
     
     document.getElementById("button-head").style.background ="#333333ff"
     document.getElementById("button-body").style.background ="#333333ff"
     document.getElementById("button-match").style.background ="#333333ff"
+    document.getElementById("button-terms_of_service").style.color ="#dddddddd"
     update_pagination(app.currentTotalPages, page)
     if (app.currentPage == "body") {
         goto_body(page)
@@ -196,6 +218,13 @@ function goto_page(page) {
         macth_tab()
         update_pagination(0)
         document.getElementById("button-match").style.background =selectedCOlor
+    }
+
+    if (app.currentPage == "terms_of_service"){
+        tos_tab()
+        update_pagination(0)
+       
+        document.getElementById("button-terms_of_service").style.color ="white"
     }
 
 
@@ -482,14 +511,38 @@ function domatch_upload(image) {
     bodys =  (await data.json()).filter(e=>e)
    
 
+    const hiddens = (await (await fetch("./hiddens.json")).json()).map((e)=>e.toLowerCase())
+    bodys = bodys.filter((filename)=>{
+       for (let index = 0; index < hiddens.length; index++) {
+        const hidden = hiddens[index];
+        if (filename.includes(hidden) ) return false;
+        
+       }
+       return true
+    })
+
     update_pagination(Math.ceil(bodys.length/app.MAX_ELEMENTS))
 
     
     const hdata =  await fetch("./heads.json")
     heads = (await hdata.json()).filter(e=>e)
+
+    
+    heads = heads.filter((filename)=>{
+        
+        for (let index = 0; index < hiddens.length; index++) {
+            const hidden = hiddens[index];
+            if (filename.includes(hidden) ) return false;
+        
+        }
+        return true
+     })
+
     set_aba("head")
 
     goto_page(0)
+    document.getElementById("button-terms_of_service").click()
+
 
     
 })()
