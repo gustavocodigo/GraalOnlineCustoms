@@ -178,7 +178,11 @@ function macth_tab() {
 
 function tos_tab(){
     document.querySelector("#uplist").innerHTML=`
+    <div>
+    <img width=40 src="https://images.saymedia-content.com/.image/t_share/MTgwMTE3ODg2NDU3ODE2NDA4/how-to-create-an-aesthetic-pfp-the-ultimate-guide.png">
+    </div>
         <h1>Terms of services</h1>
+        
         <p>This website have to goal to center thousands of custom in a single page aplication</p>
         <br>
        
@@ -186,19 +190,21 @@ function tos_tab(){
        
         <b style="color:red">Attention</b>This website offers skins for download. Please be aware that some of these skins could be personal, potentially leading to conflicts if used without the owners' permission. It's advisable to only download skins widely used and recognized by numerous players to avoid direct conflicts with others.
         <br></br>
-        <b>Please note</b> that the uploads are added automatically, and distinguishing between personal and non-personal skins might be challenging."
+        <b>Please note</b> that the uploads are added automatically from the web, and distinguishing between personal and non-personal skins might be challenging."
         </p>
 
         <b>Tips to choose the Ideal upload</b>
-        <ul>
-            <li>1 - choose uploads without watermark</li>
-            <li>1 - if the water mark is a link then you can pick it :) this means was downloaded from a public website</li>
-            <li>3 - have you seen atleast 3 players using it ? well its public take it "</li>
-        </ul>
+        <div>
+            <b>1</b> - choose uploads without watermark<br>
+            <b>1</b> - if the water mark is a link then you can pick it :) this means was downloaded from a public website<br>
+            <b>3</b> - have you seen atleast 4 players using it ? its probably public.<br>
+        </div>
 
-        <b>I'm not responsable for any internal conflicts in game. choose graphics at you own risk</b>
+        <b>We are not responsable for any internal conflicts in game. choose graphics at you own risk</b>
         <p>If you <b>agree</b> you can continue using this aplication if not feel free to leave.</p>
         <br>
+
+       
 
        <button style="padding: 12px; margin-left: auto;" onclick="app.currentPage='head';set_aba('head');goto_page(0)"> AGREE</button>
      
