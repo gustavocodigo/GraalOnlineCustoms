@@ -1,385 +1,44 @@
-
 body {
-    min-height: 100svh;
-    
-}
-.download-div {
-    gap: 12px
-}
-.download-div > button{
-    flex: 1;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background-color: black;
-    color: white;
-}
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    max-width: 800px;
-    margin: auto;
-    border: 1px solid black;
-    max-height: 100svh;
-    min-height: 100svh;
-    user-select: none;
-}
-* {
+    background-color: aliceblue;
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
-
-
-}
-.header {
-    background-color: rgb(30, 30, 30);
+    max-width: 800px;
+    margin: auto;
     color: white;
-    font-weight: bold;
+    border: 2px solid black;
+    padding: 18px;
+    color: black;
+    
+}
+
+
+
+
+.enter-button {
     padding: 12px;
+    background-color: rgb(87, 108, 242);
+    font-weight: bold;
+    color: white;
+    border-radius: 12px;
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+
+.div-container-button {
     display: flex;
-    gap: 10px;
-    align-items: center;
+   
 }
 
 main {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding: 12px;
-    background-color: rgb(249, 249, 249);
-  
-
-    overflow-y: scroll;
-}
-
-.uploadcard {
-   
-}
-
-.uploadcard  img {
-    cursor: pointer;
     
-
-}
-
-
-#uplist{
-    
-background-color: rgb(255, 255, 255);
-
-color: rgb(33, 33, 33);
-flex: 1;
-
-background-size: 100% 100%;
-}
-
-.uploadbody {
-    width: 34px;
-}
-
-.uploadbody  img {
-    cursor: pointer;
-}
-
-.bushes {
-    margin-left: auto;
-    margin-right: 2%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.choose-tab {
-    background-color: rgb(26, 26, 26);
-    display: flex;
-    width: 100%;
-}
-
-.choose-tab > button {
-   
-    border: none;
-    padding: 6px;
-    flex: 1px;
-    cursor: pointer;
-    font-weight: bold;
-    color:beige;
-    display: flex;
-  
-    justify-content: center;
-    background-color: black;
-   
-    align-items: center;
-}
-
-
-.choose-tab2 {
-    background: black;
-    display: flex;
-    width: 100%;
-}
-
-.choose-tab2 > button {
-    
-    border: none;
-    padding: 4px;
-    flex: 1px;
-    cursor: pointer;
-    color: rgb(238, 230, 230);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #333333ff;
-    gap: 6%;
-
-   
-    align-items: center;
-
-
-    
-    
-}
-
-
-.hoverdark{
-    transition: 0.2s;
-
-}
-.hoverdark:hover{
-    transition: 0.2s;
-    background-color: rgba(0, 0, 0, 0.165);
-    border-radius: 12px;
-}
-
-
-.hoverimagematcher:active{
-    background-color: rgba(110, 110, 110, 0.165);
-
-}
-
-
-.title {
-    font-size: 1.2rem;
-}
-
-.alert-out {
-    height: 100svh;
-    width: 100%;
-    position: fixed;
-    z-index: 5;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.367);
-    
-}
-
-.alert {
-    width: 320px;
-    max-width: calc( 94%);
-    min-height: 200px;
-    background-color: rgb(232, 232, 232);
-    display: flex;
-    flex-direction: column;
-    padding: 12px;
-    justify-content: space-between;
-    border-radius: 6px;
-   
-}
-.alert img {
-    margin: auto;
-    display: block;
-}
-
-
-.alert  button {
-    background-color: black;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 8px;
-}
-
-.alert button:hover {
-    background-color: rgb(55, 55, 55);
-
-}
-
-.pagination {
-    display: flex;
-    min-height: 40px;
-    width: 100%;
-    
-  
-    padding: 8px;
-    gap: 4px;
-
-    overflow-x: scroll;
-    overflow-y: hidden;
-   
-    background-color: rgb(57, 51, 51);
-
-
-}
-
-.pagination > div {
-    padding: 2px;
-   
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width:fit-content;
-    min-width: 26px;
-}
-
-.pagination > div:hover{
-    background-color: rgb(77, 82, 80);
-    color: black
-}
-
-
-
-
-::-webkit-scrollbar {
-    width: 13px;
-    height: 4px;
-  }
-
-  
-
-
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgba(97, 89, 89, 0.413); 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #645f5f; 
-  }
-
-
-
-  
-  img {
-    image-rendering: pixelated;
-  }
-
-
-
-
-
-
-
-  button:hover {
-    cursor:pointer;
-  }
-
-
-  .head-img-loading {
-    background-image: url(https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif);
-    background-size: 100% ;
-    background-size: 60%;
-    background-position: center;
-    
-    border-radius: 20%;
-    background-repeat: no-repeat;
-  }
-
-
-  .body-img-loading {
-    background-image: url(https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif);
-    background-size: 100% ;
-    background-size: 60%;
-    background-position: center;
-    background-color: rgba(0, 0, 0, 0.515);
-    
-    border-radius: 10%;
-    background-repeat: no-repeat;
-  }
-
-
-
-  .agree-tos-button{
-    background-color: black;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 12px;
-  }
-
-
-
-  #upload-view-container {
-    background-color: rgb(46, 46, 46);
-    border-top: 1px solid black;
-    z-index: 99;
-    position: relative;
-
-
-  }
-
-
-
-  #upload-view{
-    bottom: 0;
-    right: 0;
-    width: 100px;
-    min-height: 90px;
-    display: flex;
-    justify-content: end;
-    width: 100%;
-   
-    gap: 4px;
-    padding: 8px;
-    background-color: transparent;
-    color: rgb(235, 235, 235);
-    position: relative;
-}
-
-
-#upload-view button{
-    background-color: black;
-    border-radius: 5px;
-    color: white;
-    padding: 2px 8px;
-    max-height: 26px;
-}
-
-
-
-
-
-
-#toggle-upload-tester-view{
-    background-color: rgba(0, 0, 0, 0.641);
-    padding: 4px 12px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    position: absolute;
-    top: -24px;
-    left: 0
     
 }

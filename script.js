@@ -24,7 +24,7 @@ function update_pagination(totalpages, selected){
     let html = ""
     for (let index = 0; index < totalpages; index++) {
         if ( selected == index ) {
-            html = html + `<div onclick="" style="background-color: white; color: black">${index+1}</div>`
+            html = html + `<div onclick="" style="background-color: #00000099; color: white">${index+1}</div>`
         }else
         html = html + `<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index+1}</div>`
     }
@@ -258,12 +258,12 @@ function tos_tab(){
 
 
 function goto_page(page) {
-    let selectedCOlor = "gray"
+    let selectedCOlor = " rgb(82, 70, 200)"
     
-    document.getElementById("button-head").style.background ="#333333ff"
-    document.getElementById("button-body").style.background ="#333333ff"
-    document.getElementById("button-match").style.background ="#333333ff"
-    document.getElementById("button-terms_of_service").style.color ="#dddddddd"
+    document.getElementById("button-head").style.background =" rgb(82, 82, 217)"
+    document.getElementById("button-body").style.background =" rgb(82, 82, 217)"
+    document.getElementById("button-match").style.background ="rgb(82, 82, 217)"
+    document.getElementById("button-terms_of_service").style.color ="#AAAAAA"
     update_pagination(app.currentTotalPages, page)
     if (app.currentPage == "body") {
         goto_body(page)
