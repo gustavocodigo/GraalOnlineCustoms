@@ -225,7 +225,12 @@
 
 
         <div id="upload-view">
-            <div style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
+            <div style="display: flex; flex-direction: column; gap:4px">
+                <button style="padding: 2px 4px" onclick="open_alert(document.querySelector('#upload-view').querySelector('#head').src,'head')">HEAD</button>
+                <button style="padding: 2px 4px" onclick="open_alert(document.querySelector('#upload-view').querySelector('#body').src,'body')">BODY</button>
+
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px; background-color: white; border-radius: 8px;">
        
 
                 <div style="height: 80px; cursor:pointer" onclick="" class="hoverdark">

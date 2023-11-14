@@ -322,7 +322,7 @@ background-size: 100% 100%;
   #upload-view{
     bottom: 0;
     right: 0;
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(70, 70, 70);
     z-index: 99;
     width: 100px;
     min-height: 100px;
@@ -332,6 +332,7 @@ background-size: 100% 100%;
     justify-content: end;
     width: 100%;
     position: relative;
+    gap: 4px;
 
 }
 
