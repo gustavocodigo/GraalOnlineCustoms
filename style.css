@@ -104,15 +104,17 @@ background-size: 100% 100%;
 .choose-tab > button {
    
     border: none;
-    padding: 8px;
+    padding: 6px;
     flex: 1px;
     cursor: pointer;
     font-weight: bold;
     color:beige;
     display: flex;
-    gap: 4px;
+  
     justify-content: center;
     background-color: black;
+   
+    align-items: center;
 }
 
 
@@ -125,7 +127,7 @@ background-size: 100% 100%;
 .choose-tab2 > button {
     
     border: none;
-    padding: 12px;
+    padding: 4px;
     flex: 1px;
     cursor: pointer;
     color: rgb(238, 230, 230);
@@ -133,7 +135,10 @@ background-size: 100% 100%;
     align-items: center;
     justify-content: center;
     background-color: #333333ff;
-    gap: 6px;
+    gap: 6%;
+
+   
+    align-items: center;
 
 
     

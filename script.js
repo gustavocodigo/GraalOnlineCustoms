@@ -185,7 +185,7 @@ function tos_tab(){
     <div>
 
 
-    <div style="line-height: 1.5;">
+    <div style="line-height: 1.5; padding: 7px">
     
    
         <h1>Terms of services</h1>
@@ -203,7 +203,7 @@ function tos_tab(){
         <b>Tips to choose the Ideal upload</b>
         <div>
             <b>1</b> - choose uploads without watermark<br>
-            <b>1</b> - if the water mark is a link then you can pick it :) this means was downloaded from a public website<br>
+            <b>2</b> - if the water mark is a link then you can pick it :) this means was downloaded from a public website<br>
             <b>3</b> - have you seen atleast 4 players using it ? its probably public.<br>
         </div>
 
