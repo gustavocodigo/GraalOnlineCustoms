@@ -262,6 +262,39 @@ function goto_page(page) {
     document.querySelector("#uplist").scrollTop = 0
 }
 
+function send_to_tester_directly(url, type) {
+    if ( type == "body") {
+        document.querySelector("#upload-view").querySelector("#body").setAttribute("src", url)
+    }else if (type == "head") {
+        document.querySelector("#upload-view").querySelector("#head").setAttribute("src", url)
+    }
+}
+
+
+
+
+
+function send_to_tester(type) {
+    if (type == "body") {
+        const alert = document.querySelector("#alert-out-body")
+        const body_url = alert.querySelector("#body").getAttribute("src")
+        if (body_url){
+            document.querySelector("#upload-view").querySelector("#body").setAttribute("src", body_url)
+        }else{
+            console.error("Could not get src attr  to send to tester")
+        }
+    }else if ( type == "head") {
+        const alert = document.querySelector("#alert-out")
+        const body_url = alert.querySelector("#head").getAttribute("src")
+        if (body_url){
+            document.querySelector("#upload-view").querySelector("#head").setAttribute("src", body_url)
+        }else{
+            console.error("Could not get src attr  to send to tester")
+        }
+    }
+   
+}
+
 function goto_body(page) {
     app.currentBodyPage = page
     let uplist = document.getElementById("uplist")
@@ -505,12 +538,12 @@ function domatch_upload(image) {
           
 
             player.heads.forEach(element => {
-                html += `<div><img src="${element}"/></div>`
+                html += `<div onclick='send_to_tester_directly("${element}", "head")' style="cursor:pointer"><img src="${element}"/></div>`
                 count++;
             });
 
             player.bodys.forEach(element => {
-                html += `<div><img src="${element}"/></div>`
+                html += `<div  onclick='send_to_tester_directly("${element}", "body")' style="cursor:pointer"><img src="${element}"/></div>`
                 count++;
             });
 

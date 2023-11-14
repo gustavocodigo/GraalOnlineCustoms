@@ -318,3 +318,23 @@ background-size: 100% 100%;
     border: none;
     border-radius: 12px;
   }
+
+  #upload-view{
+    bottom: 0;
+    right: 0;
+    background-color: rgb(214, 214, 214);
+    z-index: 99;
+    width: 100px;
+    min-height: 100px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    position: relative;
+
+}
+
+#upload-view-chat{
+    position: absolute;
+}

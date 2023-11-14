@@ -125,7 +125,13 @@
            
         </div>
 
-       
+        <div style="display:flex; padding: 2px; justify-content: end;">
+            <div onclick="send_to_tester('head')" style="cursor:pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm5.904-2.803a.5.5 0 1 0-.707.707L9.293 10H6.525a.5.5 0 0 0 0 1H10.5a.5.5 0 0 0 .5-.5V6.525a.5.5 0 0 0-1 0v2.768L5.904 5.197z"/>
+                  </svg>
+            </div>
+        </div>
 
       
         <div style=" flex-direction: column; font-size: 0.9em;  gap: 4px; margin: 12px 0px; border:1px solid gray; padding: 4px">
@@ -175,6 +181,14 @@
             <img id="body">
         </div>
 
+        <div style="display:flex; padding: 2px; justify-content: end;">
+            <div onclick="send_to_tester('body')" style="cursor:pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm5.904-2.803a.5.5 0 1 0-.707.707L9.293 10H6.525a.5.5 0 0 0 0 1H10.5a.5.5 0 0 0 .5-.5V6.525a.5.5 0 0 0-1 0v2.768L5.904 5.197z"/>
+                  </svg>
+            </div>
+        </div>
+
        
         <div style="display: flex; flex-direction: column; font-size: 0.9; gap: 6px; margin: 8px 0px; border:1px solid gray; padding: 4px">
             <h4>Graal Online Upload sites:</h4>
@@ -187,7 +201,7 @@
             <a href="https://classicupload.graalonline.com/" target="_blank">
                 Graal Classic Upload
             </a>
-            <a href="https://eraupload.graalonline.com/" target="_blank">
+            <a href="https://erauploa; d.graalonline.com/" target="_blank">
                 Graal Era Upload
             </a>
         </div>
@@ -205,6 +219,28 @@
         </div>
 
       
+        </div>
+        </div>
+
+
+
+        <div id="upload-view">
+            <div style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
+       
+
+                <div style="height: 80px; cursor:pointer" onclick="" class="hoverdark">
+        
+                
+                <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
+                <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
+        
+                    <img id="body" alt="" style="position:relative; left: -64px"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
+                </div>
+                <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
+                    <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="">
+                </div>
+            </div>
+        
         </div>
 
 </body>
