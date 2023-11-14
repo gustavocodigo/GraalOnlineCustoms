@@ -67,6 +67,37 @@ function downloadFIle(url, nomeDoArquivo) {
         console.error("Ocorreu um erro ao baixar o arquivo:", error);
       });
   }
+
+
+
+function show_test_upload_container(){
+    document.querySelector("#upload-view").style.display = "flex"
+    document.querySelector("#toggle-upload-tester-view").style.scale = "1"
+
+
+}
+
+
+
+function hide_test_upload_container() {
+    document.querySelector("#upload-view").style.display = "none"
+    document.querySelector("#toggle-upload-tester-view").style.scale = "-1"
+
+}
+
+
+function toggle_upload_button_click() {
+    let show =  document.querySelector("#upload-view").style.display != "none"
+
+    if (show) {
+        hide_test_upload_container()
+    }else{
+        show_test_upload_container()
+
+    }
+
+
+}
   
 
 // alert
@@ -292,6 +323,8 @@ function send_to_tester(type) {
             console.error("Could not get src attr  to send to tester")
         }
     }
+
+    show_test_upload_container()
    
 }
 
@@ -538,12 +571,12 @@ function domatch_upload(image) {
           
 
             player.heads.forEach(element => {
-                html += `<div onclick='send_to_tester_directly("${element}", "head")' style="cursor:pointer"><img src="${element}"/></div>`
+                html += `<div onclick='send_to_tester_directly("${element}", "head")' style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
                 count++;
             });
 
             player.bodys.forEach(element => {
-                html += `<div  onclick='send_to_tester_directly("${element}", "body")' style="cursor:pointer"><img src="${element}"/></div>`
+                html += `<div  onclick='send_to_tester_directly("${element}", "body")' style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
                 count++;
             });
 
@@ -563,6 +596,7 @@ function domatch_upload(image) {
 
 
 (async function (){
+    hide_test_upload_container()
     const data = await fetch("./bodys.json")
     bodys =  (await data.json()).filter(e=>e)
    

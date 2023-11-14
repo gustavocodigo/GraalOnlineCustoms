@@ -125,7 +125,7 @@
         </div>
 
         <div style="display:flex; padding: 2px; justify-content: end;">
-            <div onclick="send_to_tester('head')" style="cursor:pointer">
+            <div onclick="send_to_tester('head')" style="cursor:pointer" class="hoverdark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-right-circle-fill" viewBox="0 0 16 16">
                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm5.904-2.803a.5.5 0 1 0-.707.707L9.293 10H6.525a.5.5 0 0 0 0 1H10.5a.5.5 0 0 0 .5-.5V6.525a.5.5 0 0 0-1 0v2.768L5.904 5.197z"/>
                   </svg>
@@ -181,7 +181,7 @@
         </div>
 
         <div style="display:flex; padding: 2px; justify-content: end;">
-            <div onclick="send_to_tester('body')" style="cursor:pointer">
+            <div onclick="send_to_tester('body')" style="cursor:pointer" class="hoverdark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-right-circle-fill" viewBox="0 0 16 16">
                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm5.904-2.803a.5.5 0 1 0-.707.707L9.293 10H6.525a.5.5 0 0 0 0 1H10.5a.5.5 0 0 0 .5-.5V6.525a.5.5 0 0 0-1 0v2.768L5.904 5.197z"/>
                   </svg>
@@ -222,34 +222,47 @@
         </div>
 
 
+        <div id="upload-view-container">
+            <button onclick="toggle_upload_button_click()" id="toggle-upload-tester-view">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                    <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                  </svg>
+            </button>
+            <div id="upload-view">
 
-        <div id="upload-view">
-
-            <p style="margin: 4px">
-                Combine uploads <b>here</b> be creative ! 
-            </p>
-            <div style="display: flex; flex-direction: column; gap:4px">
-                <button  onclick="open_alert(document.querySelector('#upload-view').querySelector('#head').src,'head')">HEAD</button>
-                <button  onclick="open_alert(document.querySelector('#upload-view').querySelector('#body').src,'body')">BODY</button>
-
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px; background-color: rgb(74, 74, 74); border-radius: 8px;">
-       
-
-                <div style="height: 80px; cursor:pointer" onclick="" class="hoverdark">
-        
-                
-                <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-                <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
-        
-                    <img id="body" alt="" style="position:relative; left: -64px"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
+             
+    
+    
+                <p style="margin: 4px; height: 100%">
+                    Combine uploads <b>here</b> be creative ! 
+                </p>
+                <div style="display: flex; flex-direction: column; gap:4px">
+                    <button  onclick="open_alert(document.querySelector('#upload-view').querySelector('#head').src,'head')">HEAD</button>
+                    <button  onclick="open_alert(document.querySelector('#upload-view').querySelector('#body').src,'body')">BODY</button>
+    
                 </div>
-                <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
-                    <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="https://cdn.discordapp.com/attachments/1171719050687156255/1171759591109963776/olwest_personal_head_graal3715772-100.png?ex=655dd928&is=654b6428&hm=6919854adb919cce46095d415666c522f893ed25336f39e903516f7b42aad4a8&">
+                <div style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px; background-color: rgb(74, 74, 74); border-radius: 8px;">
+           
+    
+                    <div style="height: 80px; cursor:pointer" onclick="" class="hoverdark">
+            
+                    
+                    <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
+                    <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
+            
+                        <img id="body" alt="" style="position:relative; left: -64px"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
+                    </div>
+                    <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
+                        <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="https://cdn.discordapp.com/attachments/1171719050687156255/1171759591109963776/olwest_personal_head_graal3715772-100.png?ex=655dd928&is=654b6428&hm=6919854adb919cce46095d415666c522f893ed25336f39e903516f7b42aad4a8&">
+                    </div>
                 </div>
+    
+    
+            
             </div>
-        
+
         </div>
+       
 
 </body>
 </html>
