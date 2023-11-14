@@ -260,9 +260,9 @@ function tos_tab(){
 function goto_page(page) {
     let selectedCOlor = " rgb(82, 70, 200)"
     
-    document.getElementById("button-head").style.background =" rgb(82, 82, 217)"
-    document.getElementById("button-body").style.background =" rgb(82, 82, 217)"
-    document.getElementById("button-match").style.background ="rgb(82, 82, 217)"
+    document.getElementById("button-head").style.background =" rgb(91, 125, 191)"
+    document.getElementById("button-body").style.background =" rgb(91, 125, 191)"
+    document.getElementById("button-match").style.background ="rgb(91, 125, 191)"
     document.getElementById("button-terms_of_service").style.color ="#AAAAAA"
     update_pagination(app.currentTotalPages, page)
     if (app.currentPage == "body") {
