@@ -258,7 +258,7 @@ function tos_tab(){
 
 
 function goto_page(page) {
-    let selectedCOlor = "rgb(131, 166, 236);"
+    let selectedCOlor = "rgb(167, 179, 255)"
     
     document.getElementById("button-head").style.background =" rgb(91, 125, 191)"
     document.getElementById("button-body").style.background =" rgb(91, 125, 191)"
