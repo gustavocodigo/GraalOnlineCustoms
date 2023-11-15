@@ -325,15 +325,17 @@ background-size: 100% 100%;
     outline: none;
     border: none;
     border-radius: 12px;
+   
   }
 
 
 
   #upload-view-container {
-    background-color:  rgb(116, 116, 232);
+    background-color:  rgb(237, 237, 237);
     border-top: 1px solid black;
     z-index: 99;
     position: relative;
+   
 
 
   }
@@ -352,7 +354,7 @@ background-size: 100% 100%;
     gap: 4px;
     padding: 8px;
     background-color: transparent;
-    color: rgb(235, 235, 235);
+    color: rgb(40, 38, 38);
     position: relative;
 }
 
@@ -371,7 +373,7 @@ background-size: 100% 100%;
 
 
 #toggle-upload-tester-view{
-    background-color:  rgb(82, 82, 217);
+    background-color:  rgb(59, 59, 59);
     padding: 4px 12px;
     color: white;
     display: flex;
