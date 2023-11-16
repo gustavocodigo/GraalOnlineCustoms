@@ -1,12 +1,47 @@
+const CUSTOM_TAB_TYPE = {
+    HEAD: "tab_head",
+    BODY: "tab_body",
+    MATCH: "tab_match",
+    TERMS_OF_SERVICE: "tab_terms_of_service"
+}
+
+
+const FILE_DOWNLOAD_TYPE = {
+    HEAD: "filetype_head",
+    BODY: "filetype_body"
+}
+
+const FILE_DOWNLOAD_TYPES_PREFIX = {
+    HEAD: "head-",
+    BODY: "body-",
+    UNKNOWN: "unknown-"
+}
+
+const ALERT_TYPE = {
+    HEAD: "alert_head",
+    BODY: "alert_body"
+}
+
+
+const UP_TESTER_FILE_TYPE = {
+    HEAD: "tester_head",
+    BODY: "tester_body"
+}
+
+
+const MATCH_TYPE = {
+    HEAD: "match_head",
+    BODY: "match_body"
+}
+
+
 const app = {
     MAX_ELEMENTS: 80,
-    currentPage: "body",
+    currentPage: CUSTOM_TAB_TYPE.HEAD,
     currentHeadPage: 0,
     currentBodyPage: 0,
     currentTotalPages: 0
 }
-
-
 
 
 let heads = []
@@ -15,7 +50,6 @@ let matches = []
 
 function main() {
     goto_head(0)
-
 }
 
 
@@ -101,9 +135,9 @@ function toggle_upload_button_click() {
 
 
 // alert
-let open_alert = () => { }
-let download_alert = () => { }
-let close_alert = () => { }
+let open_alert = (image_link, alert_type) => { }
+let download_alert_click = (file_type) => { }
+let open_alert_l = (image_link, alert_type) => { }
 {
     document.addEventListener("DOMContentLoaded", () => {
         const aout = document.querySelector("#alert-out")
@@ -126,43 +160,41 @@ let close_alert = () => { }
             set_sprite(sprite)
         })
 
-        let open_alert_l = (link, type) => {
+        let open_alert_l = (image_link, alert_type) => {
 
-            if (type == "body") {
+            if (alert_type == ALERT_TYPE.BODY) {
                 aoutbody.style.display = "flex"
                 const body = aoutbody.querySelector("#body")
-
-                body.setAttribute("src", link)
-            } else if (type == "head") {
+                body.setAttribute("src", image_link)
+            } else if (alert_type == ALERT_TYPE.HEAD) {
                 set_sprite(2)
-
                 aout.style.display = "flex"
                 const head = aout.querySelector("#head")
-
-
-
-                head.setAttribute("src", link)
-
-                aout.querySelector("#head-preview").setAttribute("src", link)
+                head.setAttribute("src", image_link)
+                aout.querySelector("#head-preview").setAttribute("src", image_link)
             }
 
         }
-        close_alert = (type) => {
-            if (type == "head") {
+        close_alert = (alert_type) => {
+            if (alert_type == ALERT_TYPE.HEAD) {
                 aout.style.display = "none"
-            } if (type == "body") {
+            } if (alert_type == ALERT_TYPE.BODY) {
                 aoutbody.style.display = "none"
             }
         }
 
-        download_alert = () => {
+        download_alert_click = (file_type) => {
             let url = undefined;
-            if (app.currentPage == "head") {
+            let prefix = FILE_DOWNLOAD_TYPES_PREFIX.UNKNOWN;
+
+            if (file_type == FILE_DOWNLOAD_TYPE.HEAD) {
                 url = head.getAttribute("src")
+                prefix = FILE_DOWNLOAD_TYPES_PREFIX.HEAD
             }
 
-            if (app.currentPage == "body") {
+            if (file_type == FILE_DOWNLOAD_TYPE.BODY) {
                 url = body.getAttribute("src")
+                prefix = FILE_DOWNLOAD_TYPES_PREFIX.BODY
             }
 
 
@@ -171,11 +203,12 @@ let close_alert = () => { }
                 return
             }
 
-            downloadFIle(url, btoa(Math.random()))
+            downloadFIle(url, prefix + btoa(Math.random()))
         }
 
 
         open_alert = (link, type) => {
+            console.log(link, type)
             setTimeout(() => {
                 open_alert_l(link, type)
             }, 80)
@@ -186,10 +219,10 @@ let close_alert = () => { }
 
 
 function set_aba(page) {
-    if (page == "head") {
+    if (page == CUSTOM_TAB_TYPE.HEAD) {
         update_pagination(Math.ceil(heads.length / app.MAX_ELEMENTS), app.currentHeadPage)
     }
-    if (page == "body") {
+    if (page == CUSTOM_TAB_TYPE.BODY) {
         update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS), app.currentBodyPage)
     }
     app.currentPage = page
@@ -199,7 +232,6 @@ function set_aba(page) {
 
 function macth_tab() {
     document.querySelector("#uplist").innerHTML = `
-
     <div>
         <h2>Choose an body or head then click in MATCH</h1>
         the potentially matches for the custom should appears here.
@@ -258,31 +290,31 @@ function tos_tab() {
 
 
 function goto_page(page) {
-    let selectedCOlor = " rgb(116, 135, 255)"
+    const selectedCOlor = " rgb(116, 135, 255)"
 
     document.getElementById("button-head").style.background = " rgb(91, 125, 191)"
     document.getElementById("button-body").style.background = " rgb(91, 125, 191)"
     document.getElementById("button-match").style.background = "rgb(91, 125, 191)"
     document.getElementById("button-terms_of_service").style.color = "#AAAAAA"
     update_pagination(app.currentTotalPages, page)
-    if (app.currentPage == "body") {
+    if (app.currentPage == CUSTOM_TAB_TYPE.BODY) {
         goto_body(page)
 
         document.getElementById("button-body").style.background = selectedCOlor
     }
-    if (app.currentPage == "head") {
+    if (app.currentPage == CUSTOM_TAB_TYPE.HEAD) {
         goto_head(page)
 
 
         document.getElementById("button-head").style.background = selectedCOlor
     }
-    if (app.currentPage == "match") {
+    if (app.currentPage == CUSTOM_TAB_TYPE.MATCH) {
         macth_tab()
         update_pagination(0)
         document.getElementById("button-match").style.background = selectedCOlor
     }
 
-    if (app.currentPage == "terms_of_service") {
+    if (app.currentPage == CUSTOM_TAB_TYPE.TERMS_OF_SERVICE) {
         tos_tab()
         update_pagination(0)
 
@@ -294,9 +326,9 @@ function goto_page(page) {
 }
 
 function send_to_tester_directly(url, type) {
-    if (type == "body") {
+    if (type == UP_TESTER_FILE_TYPE.BODY) {
         document.querySelector("#upload-view").querySelector("#body").setAttribute("src", url)
-    } else if (type == "head") {
+    } else if (type == UP_TESTER_FILE_TYPE.HEAD) {
         document.querySelector("#upload-view").querySelector("#head").setAttribute("src", url)
     }
 }
@@ -306,7 +338,7 @@ function send_to_tester_directly(url, type) {
 
 
 function send_to_tester(type) {
-    if (type == "body") {
+    if (type == UP_TESTER_FILE_TYPE.BODY) {
         const alert = document.querySelector("#alert-out-body")
         const body_url = alert.querySelector("#body").getAttribute("src")
         if (body_url) {
@@ -314,7 +346,7 @@ function send_to_tester(type) {
         } else {
             console.error("Could not get src attr  to send to tester")
         }
-    } else if (type == "head") {
+    } else if (type == UP_TESTER_FILE_TYPE.HEAD) {
         const alert = document.querySelector("#alert-out")
         const body_url = alert.querySelector("#head").getAttribute("src")
         if (body_url) {
@@ -342,7 +374,7 @@ function goto_body(page) {
         <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
        
 
-        <div style="height: 80px; cursor:pointer" onclick="open_alert('${element}','body')" class="hoverdark">
+        <div style="height: 80px; cursor:pointer" onclick="open_alert('${element}', ALERT_TYPE.BODY)" class="hoverdark">
 
         
         <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
@@ -408,7 +440,7 @@ function goto_head(page) {
             <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
        
 
-            <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert('${element}','head')" class="hoverdark">
+            <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert('${element}', ALERT_TYPE.HEAD )" class="hoverdark">
     
             
             <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
@@ -523,27 +555,31 @@ async function preload_matches() {
 
 
 
-function domatch_upload_click() {
+function domatch_upload_click(match_type) {
 
     preload_matches()
 
     let url = ""
 
-    if (app.currentPage == "body")
+    if (match_type == MATCH_TYPE.BODY)
         url = document.querySelector("#alert-out-body").querySelector("#body").getAttribute("src")
-    if (app.currentPage == "head")
+    if (match_type == MATCH_TYPE.HEAD)
         url = document.querySelector("#alert-out").querySelector("#head").getAttribute("src")
 
 
+
     update_pagination(0)
+    
 
     if (domatch_upload(url)
     ) {
 
-        set_aba("match")
+        set_aba(CUSTOM_TAB_TYPE.MATCH)
     }
 }
 function domatch_upload(image) {
+  
+    
     // extract id
     let m = image.match(/graal[^.]+/)
     const id = m == null ? false : m[0].split("-")[0]
@@ -571,12 +607,14 @@ function domatch_upload(image) {
 
 
             player.heads.forEach(element => {
-                html += `<div onclick='send_to_tester_directly("${element}", "head")' style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
+                const encodedElement = encodeURIComponent(element);
+                html += `<div onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.HEAD}')" style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
                 count++;
             });
 
             player.bodys.forEach(element => {
-                html += `<div  onclick='send_to_tester_directly("${element}", "body")' style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
+                const encodedElement = encodeURIComponent(element);
+                html += `<div  onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.BODY}')" style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
                 count++;
             });
 
