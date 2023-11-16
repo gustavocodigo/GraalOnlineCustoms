@@ -279,7 +279,7 @@ function tos_tab() {
     
      <div class="margin-left: auto; width: 100%">
 
-     <button style="padding: 12px; display: block; margin-left: auto; " onclick="app.currentPage='head';set_aba('head');goto_page(0)" class="agree-tos-button"> AGREE</button>
+     <button style="padding: 12px; display: block; margin-left: auto; " onclick="app.currentPage='head';set_aba(CUSTOM_TAB_TYPE.HEAD);goto_page(0)" class="agree-tos-button"> AGREE</button>
 
      </div>
 
