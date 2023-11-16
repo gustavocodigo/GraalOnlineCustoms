@@ -1,5 +1,5 @@
-// This source code was written in 2023
-// Last update year 2023
+// This source code was written in 2023 and its maintaned at GitHub.com
+// Last update in 2023
 
 
 const CUSTOM_TAB_TYPE = {
@@ -69,14 +69,22 @@ const app = {
 
 
 
+function put_version_on_dom(){
+    const version_element = document.getElementById("version")
+    if (version_element)
+        version_element.innerText = `version ${app.VERSION}`
+    else
+        console.error("Cannot find any element that store id version.")
+}
+
 
 function main() {
-    close_alert("head")
-    close_alert("body")
-    set_aba("head")
+    put_version_on_dom()
+    close_alert(ALERT_TYPE.HEAD)
+    close_alert(ALERT_TYPE.BODY)
+    set_aba(CUSTOM_TAB_TYPE.TERMS_OF_SERVICE)
 
-    const version_element = document.getElementById("version")
-    if (version_element) version_element.innerText = `version ${app.VERSION}`
+   
 }
 
 
