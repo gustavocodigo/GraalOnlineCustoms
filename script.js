@@ -1,3 +1,7 @@
+// This source code was written in 2023
+// Last update year 2023
+
+
 const CUSTOM_TAB_TYPE = {
     HEAD: "tab_head",
     BODY: "tab_body",
