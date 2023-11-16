@@ -35,8 +35,14 @@ const MATCH_TYPE = {
 }
 
 
+
+const cached_images = {
+    heads: [],
+    bodys: []
+}
+
 const app = {
-    MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 80,
+    MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 40,
     currentPage: CUSTOM_TAB_TYPE.HEAD,
     currentHeadPage: 0,
     currentBodyPage: 0,
@@ -44,8 +50,7 @@ const app = {
 }
 
 
-let heads = []
-let bodys = []
+
 let matches = []
 
 function main() {
@@ -219,6 +224,8 @@ let open_alert_l = (image_link, alert_type) => { }
 
 
 function set_aba(page) {
+    const heads = cached_images.heads
+    const bodys = cached_images.bodys
     if (page == CUSTOM_TAB_TYPE.HEAD) {
         update_pagination(Math.ceil(heads.length / app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD), app.currentHeadPage)
     }
@@ -290,6 +297,7 @@ function tos_tab() {
 
 
 function goto_page(page) {
+    
     const selectedCOlor = "rgb(116, 135, 255)"
 
     document.getElementById("button-head").style.background = " rgb(91, 125, 191)"
@@ -326,6 +334,7 @@ function goto_page(page) {
 }
 
 function send_to_tester_directly(url, type) {
+    
     if (type == UP_TESTER_FILE_TYPE.BODY) {
         document.querySelector("#upload-view").querySelector("#body").setAttribute("src", url)
     } else if (type == UP_TESTER_FILE_TYPE.HEAD) {
@@ -361,20 +370,24 @@ function send_to_tester(type) {
 }
 
 function goto_body(page) {
+    const bodys = cached_images.bodys
     app.currentBodyPage = page
     let uplist = document.getElementById("uplist")
 
     let html = ""
 
-    let bodys_n = bodys.slice(page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
-    bodys_n.forEach(element => {
+    const starting_page = page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD
+
+    let bodys_n = bodys.slice(starting_page, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
+   
+    bodys_n.forEach((element,index) => {
         if (!element) return;
         html = html + `
 
         <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
        
 
-        <div style="height: 80px; cursor:pointer" onclick="open_alert('${element}', ALERT_TYPE.BODY)" class="hoverdark">
+        <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${starting_page+index}], ALERT_TYPE.BODY)" class="hoverdark">
 
         
         <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
@@ -417,13 +430,17 @@ function isGifFile(fileName) {
 
 
 function goto_head(page) {
+    const heads = cached_images.heads
+
     app.currentHeadPage = page
     let html = ""
-    let heads_sliced = heads.slice(page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
-    heads_sliced.forEach(element => {
+    const starting_page = page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD
+    let heads_sliced = heads.slice(starting_page, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
+    heads_sliced.forEach((element, index) => {
         if (!element) return;
 
         const gif = isGifFile(extractFileNameFromURL(element))
+        
 
 
         html = html + `
@@ -432,7 +449,7 @@ function goto_head(page) {
             <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
        
 
-            <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert('${element}', ALERT_TYPE.HEAD )" class="hoverdark">
+            <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${starting_page+index}], ALERT_TYPE.HEAD )" class="hoverdark">
     
             
             <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
@@ -474,6 +491,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 async function preload_matches() {
+    const heads = cached_images.heads
+    const bodys = cached_images.bodys
     if (document.is_uploads_matched) return;
 
     document.is_uploads_matched = true
@@ -628,7 +647,7 @@ function domatch_upload(image) {
 (async function () {
     hide_test_upload_container()
     const data = await fetch("./bodys.json")
-    bodys = (await data.json()).filter(e => e)
+    let bodys = (await data.json()).filter(e => e)
 
 
     const hiddens = (await (await fetch("./hiddens.json")).json()).map((e) => e.toLowerCase())
@@ -645,7 +664,7 @@ function domatch_upload(image) {
 
 
     const hdata = await fetch("./heads.json")
-    heads = (await hdata.json()).filter(e => e)
+    let heads = (await hdata.json()).filter(e => e)
 
 
     heads = heads.filter((filename) => {
@@ -658,10 +677,15 @@ function domatch_upload(image) {
         return true
     })
 
+    cached_images.bodys = bodys
+    cached_images.heads = heads
+
     set_aba("head")
 
     goto_page(0)
     document.getElementById("button-terms_of_service").click()
+
+   
 
 
 
