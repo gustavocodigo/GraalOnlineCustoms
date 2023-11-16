@@ -29,6 +29,16 @@ const UP_TESTER_FILE_TYPE = {
 }
 
 
+const NPC_TESTER_DEFAULT_BODY = "https://cdn.discordapp.com/attachments/1171693403654865007/1171707654234714133/olwest_personal_body_graal4967387-148.png?ex=655da8ca&is=654b33ca&hm=89862e741473a80287085119165322b17c3278d777462a4a7485f525cef360c7&"
+const NPC_TESTER_DEFAULT_HEAD = ""
+
+
+const npc_tester_infor = {
+    head: NPC_TESTER_DEFAULT_HEAD,
+    body: NPC_TESTER_DEFAULT_BODY
+}
+
+
 const MATCH_TYPE = {
     HEAD: "match_head",
     BODY: "match_body"
@@ -38,23 +48,31 @@ const MATCH_TYPE = {
 
 const cached_images = {
     heads: [],
-    bodys: []
+    bodys: [],
+    matches: []
 }
 
 const app = {
-    MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 40,
+    VERSION: "0.0.2",
+    MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 54,
     currentPage: CUSTOM_TAB_TYPE.HEAD,
     currentHeadPage: 0,
     currentBodyPage: 0,
-    currentTotalPages: 0
+    currentTotalPages: 0,
+    displayTesterHeadInPreview: false,
+    displayTesterBodyInPreview: false
 }
 
 
 
-let matches = []
 
 function main() {
-    goto_head(0)
+    close_alert("head")
+    close_alert("body")
+    set_aba("head")
+
+    const version_element = document.getElementById("version")
+    if (version_element) version_element.innerText = `version ${app.VERSION}`
 }
 
 
@@ -337,8 +355,12 @@ function send_to_tester_directly(url, type) {
     
     if (type == UP_TESTER_FILE_TYPE.BODY) {
         document.querySelector("#upload-view").querySelector("#body").setAttribute("src", url)
+        npc_tester_infor.body = url
+
     } else if (type == UP_TESTER_FILE_TYPE.HEAD) {
         document.querySelector("#upload-view").querySelector("#head").setAttribute("src", url)
+        npc_tester_infor.head = url
+
     }
 }
 
@@ -351,18 +373,21 @@ function send_to_tester(type) {
         const alert = document.querySelector("#alert-out-body")
         const body_url = alert.querySelector("#body").getAttribute("src")
         if (body_url) {
-            document.querySelector("#upload-view").querySelector("#body").setAttribute("src", body_url)
+            send_to_tester_directly(body_url, type)
         } else {
             console.error("Could not get src attr  to send to tester")
         }
     } else if (type == UP_TESTER_FILE_TYPE.HEAD) {
+        
         const alert = document.querySelector("#alert-out")
-        const body_url = alert.querySelector("#head").getAttribute("src")
-        if (body_url) {
-            document.querySelector("#upload-view").querySelector("#head").setAttribute("src", body_url)
+        const head_url = alert.querySelector("#head").getAttribute("src")
+        if (head_url) {
+            send_to_tester_directly(head_url, type)
+
         } else {
             console.error("Could not get src attr  to send to tester")
         }
+
     }
 
     show_test_upload_container()
@@ -396,7 +421,7 @@ function goto_body(page) {
             <img id="body" alt="" style="position:relative; left: -64px"  src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
         </div>
         <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
-            <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="">
+            <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="${app.displayTesterHeadInPreview?npc_tester_infor.head:""}">
         </div>
     </div>
 
@@ -442,7 +467,6 @@ function goto_head(page) {
         const gif = isGifFile(extractFileNameFromURL(element))
         
 
-
         html = html + `
 
 
@@ -453,7 +477,7 @@ function goto_head(page) {
     
             
             <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png" cache-control="max-age=604800">
+                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${app.displayTesterHeadInPreview?npc_tester_infor.head:NPC_TESTER_DEFAULT_BODY}" cache-control="max-age=604800">
             </div>
             <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px;">
                 <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
@@ -479,9 +503,7 @@ function goto_head(page) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    close_alert("head")
-    close_alert("body")
-    set_aba("head")
+ 
 
     main()
 
@@ -561,7 +583,7 @@ async function preload_matches() {
     }
 
     document.body.style.innerHTML = html
-    matches = players
+    cached_images.matches = players
 }
 
 
@@ -569,6 +591,7 @@ async function preload_matches() {
 function domatch_upload_click(match_type) {
 
     preload_matches()
+
 
     let url = ""
 
@@ -589,6 +612,7 @@ function domatch_upload_click(match_type) {
     }
 }
 function domatch_upload(image) {
+    const matches = cached_images.matches
   
     
     // extract id
