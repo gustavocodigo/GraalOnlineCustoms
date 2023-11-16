@@ -600,13 +600,13 @@ function domatch_upload(image) {
 
             player.heads.forEach(element => {
                 const encodedElement = encodeURIComponent(element);
-                html += `<div onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.HEAD}'); show_test_upload_container()" style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
+                html += `<div onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.HEAD}'); show_test_upload_container()" style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}" height=590/></div>`
                 count++;
             });
 
             player.bodys.forEach(element => {
                 const encodedElement = encodeURIComponent(element);
-                html += `<div  onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.BODY}'); show_test_upload_container()" style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
+                html += `<div  onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.BODY}'); show_test_upload_container()" style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}" height=590/></div>`
                 count++;
             });
 
