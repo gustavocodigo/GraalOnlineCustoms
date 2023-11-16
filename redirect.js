@@ -1,3 +1,3 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
     window.location = "./app.html"
 })

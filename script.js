@@ -11,24 +11,24 @@ const app = {
 
 let heads = []
 let bodys = []
-let matches =[]
+let matches = []
 
 function main() {
-  goto_head(0)
-  
+    goto_head(0)
+
 }
 
 
-function update_pagination(totalpages, selected){
+function update_pagination(totalpages, selected) {
     app.currentTotalPages = totalpages
     let html = ""
     for (let index = 0; index < totalpages; index++) {
-        if ( selected == index ) {
-            html = html + `<div onclick="" style="background-color: #00000099; color: white">${index+1}</div>`
-        }else
-        html = html + `<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index+1}</div>`
+        if (selected == index) {
+            html = html + `<div onclick="" style="background-color: #00000099; color: white">${index + 1}</div>`
+        } else
+            html = html + `<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`
     }
-    document.querySelector("#pagination-div").innerHTML= html
+    document.querySelector("#pagination-div").innerHTML = html
 }
 
 
@@ -37,40 +37,40 @@ function update_pagination(totalpages, selected){
 
 function extractFileNameFromURL(url) {
     try {
-      const urlObj = new URL(url);
-      const pathname = urlObj.pathname;
-      const fileName = pathname.substring(pathname.lastIndexOf('/') + 1).split("?")[0];
-      return fileName;
+        const urlObj = new URL(url);
+        const pathname = urlObj.pathname;
+        const fileName = pathname.substring(pathname.lastIndexOf('/') + 1).split("?")[0];
+        return fileName;
     } catch (error) {
-      console.error("Erro ao analisar a URL: " + error);
-      return null;
+        console.error("Erro ao analisar a URL: " + error);
+        return null;
     }
-  }
+}
 
 function downloadFIle(url, nomeDoArquivo) {
     if (nomeDoArquivo == null) {
         nomeDoArquivo = extractFileNameFromURL(url)
     }
     fetch(url)
-      .then(response => response.blob())
-      .then(blob => {
-        const urlBlob = URL.createObjectURL(blob);
-  
-        const linkTemporario = document.createElement("a");
-        linkTemporario.href = urlBlob;
-        linkTemporario.download = nomeDoArquivo || "download"; // Define o nome do arquivo para download, padrão é "download"
-  
-        // Simula um clique no link temporário para iniciar o download
-        linkTemporario.click();
-      })
-      .catch(error => {
-        console.error("Ocorreu um erro ao baixar o arquivo:", error);
-      });
-  }
+        .then(response => response.blob())
+        .then(blob => {
+            const urlBlob = URL.createObjectURL(blob);
+
+            const linkTemporario = document.createElement("a");
+            linkTemporario.href = urlBlob;
+            linkTemporario.download = nomeDoArquivo || "download"; // Define o nome do arquivo para download, padrão é "download"
+
+            // Simula um clique no link temporário para iniciar o download
+            linkTemporario.click();
+        })
+        .catch(error => {
+            console.error("Ocorreu um erro ao baixar o arquivo:", error);
+        });
+}
 
 
 
-function show_test_upload_container(){
+function show_test_upload_container() {
     document.querySelector("#upload-view").style.display = "flex"
     document.querySelector("#toggle-upload-tester-view").style.scale = "1"
 
@@ -87,110 +87,110 @@ function hide_test_upload_container() {
 
 
 function toggle_upload_button_click() {
-    let show =  document.querySelector("#upload-view").style.display != "none"
+    let show = document.querySelector("#upload-view").style.display != "none"
 
     if (show) {
         hide_test_upload_container()
-    }else{
+    } else {
         show_test_upload_container()
 
     }
 
 
 }
-  
+
 
 // alert
-let open_alert = () => {}
-let download_alert =() => {}
-let close_alert = () => {}
+let open_alert = () => { }
+let download_alert = () => { }
+let close_alert = () => { }
 {
-    document.addEventListener("DOMContentLoaded", ()=> {
+    document.addEventListener("DOMContentLoaded", () => {
         const aout = document.querySelector("#alert-out")
         const aoutbody = document.querySelector("#alert-out-body")
 
         aout.style.display = "none"
         let sprite = 0
 
-        let set_sprite = (spritep)=> {
+        let set_sprite = (spritep) => {
             sprite = spritep
-            if( sprite >= 4) sprite = 0
-            let stp = "-"+(sprite*32)+"px"
-            head.style.top=stp
+            if (sprite >= 4) sprite = 0
+            let stp = "-" + (sprite * 32) + "px"
+            head.style.top = stp
         }
-        const head =  aout.querySelector("#head")
-        const body =  aoutbody.querySelector("#body")
+        const head = aout.querySelector("#head")
+        const body = aoutbody.querySelector("#body")
 
-        head.addEventListener("click", ()=> {
+        head.addEventListener("click", () => {
             sprite += 1
             set_sprite(sprite)
         })
 
         let open_alert_l = (link, type) => {
 
-            if ( type == "body") {
+            if (type == "body") {
                 aoutbody.style.display = "flex"
                 const body = aoutbody.querySelector("#body")
-               
-                body.setAttribute("src",link)
-            }else if (type == "head"){
+
+                body.setAttribute("src", link)
+            } else if (type == "head") {
                 set_sprite(2)
 
                 aout.style.display = "flex"
-                const head =  aout.querySelector("#head")
+                const head = aout.querySelector("#head")
 
 
-           
-                head.setAttribute("src",link)
+
+                head.setAttribute("src", link)
 
                 aout.querySelector("#head-preview").setAttribute("src", link)
             }
-         
+
         }
         close_alert = (type) => {
-            if ( type == "head") {
+            if (type == "head") {
                 aout.style.display = "none"
-            }if ( type == "body"){
+            } if (type == "body") {
                 aoutbody.style.display = "none"
             }
         }
 
-        download_alert = ()=> {
+        download_alert = () => {
             let url = undefined;
-            if (app.currentPage == "head"){
+            if (app.currentPage == "head") {
                 url = head.getAttribute("src")
             }
 
-            if (app.currentPage == "body"){
+            if (app.currentPage == "body") {
                 url = body.getAttribute("src")
             }
-            
-            
-            if ( ! url ) {
+
+
+            if (!url) {
                 alert("No image")
                 return
             }
 
             downloadFIle(url, btoa(Math.random()))
         }
-        
 
-        open_alert = (link, type)=>{
-            setTimeout(()=>{
+
+        open_alert = (link, type) => {
+            setTimeout(() => {
                 open_alert_l(link, type)
-            },80)
+            }, 80)
         }
     })
-    
+
 }
 
 
 function set_aba(page) {
-    if (page == "head"){
-        update_pagination(Math.ceil(heads.length/app.MAX_ELEMENTS), app.currentHeadPage)
+    if (page == "head") {
+        update_pagination(Math.ceil(heads.length / app.MAX_ELEMENTS), app.currentHeadPage)
     }
-    if (page == "body"){
-        update_pagination(Math.ceil(bodys.length/app.MAX_ELEMENTS),app.currentBodyPage)
+    if (page == "body") {
+        update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS), app.currentBodyPage)
     }
     app.currentPage = page
 }
@@ -198,7 +198,7 @@ function set_aba(page) {
 
 
 function macth_tab() {
-    document.querySelector("#uplist").innerHTML=`
+    document.querySelector("#uplist").innerHTML = `
 
     <div>
         <h2>Choose an body or head then click in MATCH</h1>
@@ -210,8 +210,8 @@ function macth_tab() {
 
 
 
-function tos_tab(){
-    document.querySelector("#uplist").innerHTML=`
+function tos_tab() {
+    document.querySelector("#uplist").innerHTML = `
 
     <div>
 
@@ -259,34 +259,34 @@ function tos_tab(){
 
 function goto_page(page) {
     let selectedCOlor = " rgb(116, 135, 255)"
-    
-    document.getElementById("button-head").style.background =" rgb(91, 125, 191)"
-    document.getElementById("button-body").style.background =" rgb(91, 125, 191)"
-    document.getElementById("button-match").style.background ="rgb(91, 125, 191)"
-    document.getElementById("button-terms_of_service").style.color ="#AAAAAA"
+
+    document.getElementById("button-head").style.background = " rgb(91, 125, 191)"
+    document.getElementById("button-body").style.background = " rgb(91, 125, 191)"
+    document.getElementById("button-match").style.background = "rgb(91, 125, 191)"
+    document.getElementById("button-terms_of_service").style.color = "#AAAAAA"
     update_pagination(app.currentTotalPages, page)
     if (app.currentPage == "body") {
         goto_body(page)
-        
-        document.getElementById("button-body").style.background =selectedCOlor
-    }
-    if (app.currentPage == "head"){
-        goto_head(page)
-       
 
-        document.getElementById("button-head").style.background =selectedCOlor
+        document.getElementById("button-body").style.background = selectedCOlor
     }
-    if (app.currentPage == "match"){
+    if (app.currentPage == "head") {
+        goto_head(page)
+
+
+        document.getElementById("button-head").style.background = selectedCOlor
+    }
+    if (app.currentPage == "match") {
         macth_tab()
         update_pagination(0)
-        document.getElementById("button-match").style.background =selectedCOlor
+        document.getElementById("button-match").style.background = selectedCOlor
     }
 
-    if (app.currentPage == "terms_of_service"){
+    if (app.currentPage == "terms_of_service") {
         tos_tab()
         update_pagination(0)
-       
-        document.getElementById("button-terms_of_service").style.color ="white"
+
+        document.getElementById("button-terms_of_service").style.color = "white"
     }
 
 
@@ -294,9 +294,9 @@ function goto_page(page) {
 }
 
 function send_to_tester_directly(url, type) {
-    if ( type == "body") {
+    if (type == "body") {
         document.querySelector("#upload-view").querySelector("#body").setAttribute("src", url)
-    }else if (type == "head") {
+    } else if (type == "head") {
         document.querySelector("#upload-view").querySelector("#head").setAttribute("src", url)
     }
 }
@@ -309,34 +309,34 @@ function send_to_tester(type) {
     if (type == "body") {
         const alert = document.querySelector("#alert-out-body")
         const body_url = alert.querySelector("#body").getAttribute("src")
-        if (body_url){
+        if (body_url) {
             document.querySelector("#upload-view").querySelector("#body").setAttribute("src", body_url)
-        }else{
+        } else {
             console.error("Could not get src attr  to send to tester")
         }
-    }else if ( type == "head") {
+    } else if (type == "head") {
         const alert = document.querySelector("#alert-out")
         const body_url = alert.querySelector("#head").getAttribute("src")
-        if (body_url){
+        if (body_url) {
             document.querySelector("#upload-view").querySelector("#head").setAttribute("src", body_url)
-        }else{
+        } else {
             console.error("Could not get src attr  to send to tester")
         }
     }
 
     show_test_upload_container()
-   
+
 }
 
 function goto_body(page) {
     app.currentBodyPage = page
     let uplist = document.getElementById("uplist")
-    
+
     let html = ""
 
-    let bodys_n = bodys.slice(page*app.MAX_ELEMENTS, (page+1)*app.MAX_ELEMENTS)
+    let bodys_n = bodys.slice(page * app.MAX_ELEMENTS, (page + 1) * app.MAX_ELEMENTS)
     bodys_n.forEach(element => {
-        if (!element)return;
+        if (!element) return;
         html = html + `
 
         <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
@@ -358,10 +358,10 @@ function goto_body(page) {
     </div>
         `
     })
-    if ( page+1 < app.currentTotalPages){
-      
-        html+=`
-        <div style="display: flex;height: 20px;margin-left: auto; margin-top: auto;margin-bottom: auto; cursor:pointer; position: relative; justify-content: center; align-items:center; color: white; background-color: black;padding: 12px; font-size: 0.7em" onclick="goto_page(${app.currentBodyPage+1})">
+    if (page + 1 < app.currentTotalPages) {
+
+        html += `
+        <div style="display: flex;height: 20px;margin-left: auto; margin-top: auto;margin-bottom: auto; cursor:pointer; position: relative; justify-content: center; align-items:center; color: white; background-color: black;padding: 12px; font-size: 0.7em" onclick="goto_page(${app.currentBodyPage + 1})">
             NEXT
         </div>
         `
@@ -376,12 +376,12 @@ function goto_body(page) {
 
 
 function isGifFile(fileName) {
-  if (fileName.toLowerCase().endsWith(".gif")) {
-    return true;
-  }
-  return false;
+    if (fileName.toLowerCase().endsWith(".gif")) {
+        return true;
+    }
+    return false;
 }
-  
+
 
 
 function goto_head(page) {
@@ -393,16 +393,16 @@ function goto_head(page) {
     </div>   
     </div>*/
 
-  
 
-    let heads_sliced = heads.slice(page*app.MAX_ELEMENTS, (page+1)*app.MAX_ELEMENTS)
+
+    let heads_sliced = heads.slice(page * app.MAX_ELEMENTS, (page + 1) * app.MAX_ELEMENTS)
     heads_sliced.forEach(element => {
-        if (!element)return;
+        if (!element) return;
 
         const gif = isGifFile(extractFileNameFromURL(element))
 
-     
-            html = html + `
+
+        html = html + `
 
 
             <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
@@ -418,16 +418,16 @@ function goto_head(page) {
                 <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
                 <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
             </div>
-            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">${gif?"GIF":"PNG"}</h1>
+            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">${gif ? "GIF" : "PNG"}</h1>
         </div>
         </div>
             `
-       
+
     });
 
-    if ( page+1 < app.currentTotalPages){
-    html+=`
-    <div style="display: flex;height: 20px;margin-left: auto; margin-top: auto;margin-bottom: auto; cursor:pointer; position: relative; justify-content: center; align-items:center; color: white; background-color: black;padding: 12px; font-size: 0.7em" onclick="goto_page(${app.currentHeadPage+1})">
+    if (page + 1 < app.currentTotalPages) {
+        html += `
+    <div style="display: flex;height: 20px;margin-left: auto; margin-top: auto;margin-bottom: auto; cursor:pointer; position: relative; justify-content: center; align-items:center; color: white; background-color: black;padding: 12px; font-size: 0.7em" onclick="goto_page(${app.currentHeadPage + 1})">
         NEXT
     </div>
     `
@@ -437,11 +437,11 @@ function goto_head(page) {
 }
 
 
-document.addEventListener("DOMContentLoaded", ()=> {
+document.addEventListener("DOMContentLoaded", () => {
     close_alert("head")
     close_alert("body")
     set_aba("head")
-   
+
     main()
 
 });
@@ -450,68 +450,68 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
 
 async function preload_matches() {
-    if (document.is_uploads_matched)return;
+    if (document.is_uploads_matched) return;
 
     document.is_uploads_matched = true
     let html = document.body.style.innerHTML
     document.body.style.innerHTML = "loading.."
-    const bodys_id = bodys.map((e)=>{
+    const bodys_id = bodys.map((e) => {
         // extract id
-        let m = e.match(/graal[^.]+/) 
+        let m = e.match(/graal[^.]+/)
         return m == null ? false : m[0]
-    }).filter((e)=>e)
+    }).filter((e) => e)
 
-    const heads_id = heads.map((e)=>{
-        if (!e)return;
+    const heads_id = heads.map((e) => {
+        if (!e) return;
         // extract id
-        let m = e.match(/graal[^.]+/) 
+        let m = e.match(/graal[^.]+/)
         return m == null ? false : m[0]
-    }).filter((e)=>e)
+    }).filter((e) => e)
 
 
     let players = {}
 
-    bodys_id.forEach((e)=>{
+    bodys_id.forEach((e) => {
         if (!e) return;
         let id = ""
         try {
             id = e.split("-")[0]
-        }catch(err){
+        } catch (err) {
             console.log(e, err)
         }
-       
-        if (! players[id]){
+
+        if (!players[id]) {
             players[id] = {}
         }
     })
 
 
-  
 
-    heads_id.forEach((e)=>{
+
+    heads_id.forEach((e) => {
         if (!e) return;
         let id = e.split("-")[0]
-        if (! players[id]) {
+        if (!players[id]) {
             players[id] = {}
         }
     })
 
-    for(const id in players){
+    for (const id in players) {
         e = players[id]
         if (!e) return;
         e.bodys = []
         e.heads = []
 
-        bodys.forEach((body)=>{
+        bodys.forEach((body) => {
             if (!body) return;
-            if ( body.includes(id)) {
+            if (body.includes(id)) {
                 e.bodys.push(body)
             }
         })
 
-        heads.forEach((head)=>{
+        heads.forEach((head) => {
             if (!head) return;
-            if ( head.includes(id)) {
+            if (head.includes(id)) {
                 e.heads.push(head)
             }
         })
@@ -533,25 +533,25 @@ function domatch_upload_click() {
         url = document.querySelector("#alert-out-body").querySelector("#body").getAttribute("src")
     if (app.currentPage == "head")
         url = document.querySelector("#alert-out").querySelector("#head").getAttribute("src")
- 
-   
+
+
     update_pagination(0)
 
-    if(domatch_upload(url)
-    ){
+    if (domatch_upload(url)
+    ) {
 
         set_aba("match")
     }
 }
 function domatch_upload(image) {
-     // extract id
-     let m = image.match(/graal[^.]+/) 
-     const id =  m == null ? false : m[0].split("-")[0]
+    // extract id
+    let m = image.match(/graal[^.]+/)
+    const id = m == null ? false : m[0].split("-")[0]
 
-     let count = 0
-     
-     if (id) {
-       
+    let count = 0
+
+    if (id) {
+
         if (matches[id]) {
             let html = `
             
@@ -568,7 +568,7 @@ function domatch_upload(image) {
             `
             let player = matches[id]
 
-          
+
 
             player.heads.forEach(element => {
                 html += `<div onclick='send_to_tester_directly("${element}", "head")' style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
@@ -580,53 +580,53 @@ function domatch_upload(image) {
                 count++;
             });
 
-            html+="</div>"
+            html += "</div>"
 
-            
+
             document.querySelector("#uplist").innerHTML = html
-            
-        }
-     }else{
-        console.log("No matches for this custom.")
-     }
 
-     return count > 1
+        }
+    } else {
+        console.log("No matches for this custom.")
+    }
+
+    return count > 1
 }
 
 
 
-(async function (){
+(async function () {
     hide_test_upload_container()
     const data = await fetch("./bodys.json")
-    bodys =  (await data.json()).filter(e=>e)
-   
+    bodys = (await data.json()).filter(e => e)
 
-    const hiddens = (await (await fetch("./hiddens.json")).json()).map((e)=>e.toLowerCase())
-    bodys = bodys.filter((filename)=>{
-       for (let index = 0; index < hiddens.length; index++) {
-        const hidden = hiddens[index];
-        if (filename.includes(hidden) ) return false;
-        
-       }
-       return true
-    })
 
-    update_pagination(Math.ceil(bodys.length/app.MAX_ELEMENTS))
-
-    
-    const hdata =  await fetch("./heads.json")
-    heads = (await hdata.json()).filter(e=>e)
-
-    
-    heads = heads.filter((filename)=>{
-        
+    const hiddens = (await (await fetch("./hiddens.json")).json()).map((e) => e.toLowerCase())
+    bodys = bodys.filter((filename) => {
         for (let index = 0; index < hiddens.length; index++) {
             const hidden = hiddens[index];
-            if (filename.includes(hidden) ) return false;
-        
+            if (filename.includes(hidden)) return false;
+
         }
         return true
-     })
+    })
+
+    update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS))
+
+
+    const hdata = await fetch("./heads.json")
+    heads = (await hdata.json()).filter(e => e)
+
+
+    heads = heads.filter((filename) => {
+
+        for (let index = 0; index < hiddens.length; index++) {
+            const hidden = hiddens[index];
+            if (filename.includes(hidden)) return false;
+
+        }
+        return true
+    })
 
     set_aba("head")
 
@@ -634,7 +634,7 @@ function domatch_upload(image) {
     document.getElementById("button-terms_of_service").click()
 
 
-    
+
 })()
 
 
