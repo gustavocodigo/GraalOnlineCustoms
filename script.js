@@ -36,7 +36,7 @@ const MATCH_TYPE = {
 
 
 const app = {
-    MAX_ELEMENTS: 80,
+    MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 80,
     currentPage: CUSTOM_TAB_TYPE.HEAD,
     currentHeadPage: 0,
     currentBodyPage: 0,
@@ -220,10 +220,10 @@ let open_alert_l = (image_link, alert_type) => { }
 
 function set_aba(page) {
     if (page == CUSTOM_TAB_TYPE.HEAD) {
-        update_pagination(Math.ceil(heads.length / app.MAX_ELEMENTS), app.currentHeadPage)
+        update_pagination(Math.ceil(heads.length / app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD), app.currentHeadPage)
     }
     if (page == CUSTOM_TAB_TYPE.BODY) {
-        update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS), app.currentBodyPage)
+        update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD), app.currentBodyPage)
     }
     app.currentPage = page
 }
@@ -290,7 +290,7 @@ function tos_tab() {
 
 
 function goto_page(page) {
-    const selectedCOlor = " rgb(116, 135, 255)"
+    const selectedCOlor = "rgb(116, 135, 255)"
 
     document.getElementById("button-head").style.background = " rgb(91, 125, 191)"
     document.getElementById("button-body").style.background = " rgb(91, 125, 191)"
@@ -366,7 +366,7 @@ function goto_body(page) {
 
     let html = ""
 
-    let bodys_n = bodys.slice(page * app.MAX_ELEMENTS, (page + 1) * app.MAX_ELEMENTS)
+    let bodys_n = bodys.slice(page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
     bodys_n.forEach(element => {
         if (!element) return;
         html = html + `
@@ -419,15 +419,7 @@ function isGifFile(fileName) {
 function goto_head(page) {
     app.currentHeadPage = page
     let html = ""
-    /*<div class="uploadcard">
-    <div style="width: 32px; height: 31px; overflow: hidden; margin: auto;">
-    <img id="head" style="position:relative; top: -64px;" src="${element}"  draggable='false' >
-    </div>   
-    </div>*/
-
-
-
-    let heads_sliced = heads.slice(page * app.MAX_ELEMENTS, (page + 1) * app.MAX_ELEMENTS)
+    let heads_sliced = heads.slice(page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
     heads_sliced.forEach(element => {
         if (!element) return;
 
@@ -608,13 +600,13 @@ function domatch_upload(image) {
 
             player.heads.forEach(element => {
                 const encodedElement = encodeURIComponent(element);
-                html += `<div onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.HEAD}')" style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
+                html += `<div onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.HEAD}'); show_test_upload_container()" style="cursor:pointer" class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
                 count++;
             });
 
             player.bodys.forEach(element => {
                 const encodedElement = encodeURIComponent(element);
-                html += `<div  onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.BODY}')" style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
+                html += `<div  onclick="send_to_tester_directly(decodeURIComponent('${encodedElement}'), '${UP_TESTER_FILE_TYPE.BODY}'); show_test_upload_container()" style="cursor:pointer"  class="hoverdark hoverimagematcher"><img src="${element}"/></div>`
                 count++;
             });
 
@@ -649,7 +641,7 @@ function domatch_upload(image) {
         return true
     })
 
-    update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS))
+    update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD))
 
 
     const hdata = await fetch("./heads.json")
