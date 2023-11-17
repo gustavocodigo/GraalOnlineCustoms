@@ -91,7 +91,7 @@ function update_pagination(totalpages, selected) {
     let html = ""
     for (let index = 0; index < totalpages; index++) {
         if (selected == index) {
-            html = html + `<div onclick="" style="background-color: #00000099; color: white">${index + 1}</div>`
+            html = html + `<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`
         } else
             html = html + `<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`
     }
@@ -326,12 +326,13 @@ function tos_tab() {
 
 function goto_page(page) {
     
-    const selectedCOlor = "rgb(116, 135, 255)"
+    const selectedCOlor = "var(--tab-selected-bgcolor)"
 
-    document.getElementById("button-head").style.background = " rgb(91, 125, 191)"
-    document.getElementById("button-body").style.background = " rgb(91, 125, 191)"
-    document.getElementById("button-match").style.background = "rgb(91, 125, 191)"
+    document.getElementById("button-head").style.background = " var(--main-button-bgcolor)"
+    document.getElementById("button-body").style.background = "var(--main-button-bgcolor)"
+    document.getElementById("button-match").style.background = "var(--main-button-bgcolor)"
     document.getElementById("button-terms_of_service").style.color = "#AAAAAA"
+
     update_pagination(app.currentTotalPages, page)
     if (app.currentPage == CUSTOM_TAB_TYPE.BODY) {
         goto_body(page)
