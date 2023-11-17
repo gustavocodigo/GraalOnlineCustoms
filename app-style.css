@@ -198,12 +198,13 @@ main {
     width: 320px;
     max-width: calc(94%);
     min-height: 200px;
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     padding: 12px;
     justify-content: space-between;
     border-radius: 6px;
+    color: rgb(36, 36, 36);
 
 }
 
@@ -213,8 +214,12 @@ main {
 }
 
 
+ a {
+    color: rgb(30, 30, 30);
+}
+
 .alert button {
-    background-color: black;
+    background-color: rgb(147, 5, 5);
     color: white;
     outline: none;
     border: none;
