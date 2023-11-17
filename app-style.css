@@ -1,9 +1,9 @@
 :root {
-    --main-color: #000000;
-    --header-bgcolor: #000000;
+    --main-color: #121212;
+    --header-bgcolor: #1c1c1c;
     --tabs-bgcolor: #000000;
     --body-bgcolor: #ffffff;
-    --main-button-bgcolor: #000000;
+    --main-button-bgcolor: #0e0e0e;
     --tab-selected-bgcolor: #252525;
 }
 
