@@ -88,14 +88,14 @@ function main() {
 
 function update_pagination(totalpages, selected) {
     app.currentTotalPages = totalpages
-    let html = ""
+    const divs = []
     for (let index = 0; index < totalpages; index++) {
         if (selected == index) {
-            html = html + `<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`
+           divs.push(`<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`)
         } else
-            html = html + `<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`
+            divs.push(`<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`)
     }
-    document.querySelector("#pagination-div").innerHTML = html
+    document.querySelector("#pagination-div").innerHTML = divs.join("")
 }
 
 
@@ -468,11 +468,11 @@ function goto_head(page) {
     let html = ""
     const starting_page = page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD
     let heads_sliced = heads.slice(starting_page, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
-    heads_sliced.forEach((element, index) => {
+    html += heads_sliced.map((element, index) => {
         if (!element) return;
         const gif = isGifFile(extractFileNameFromURL(element))
-        html = html + product_element_head(element, starting_page+index, gif)
-    });
+        return product_element_head(element, starting_page+index, gif)
+    }).join("");
 
     if (page + 1 < app.currentTotalPages) {
         html += `
