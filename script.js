@@ -265,34 +265,23 @@ function set_aba(page) {
 
 
 
-function macth_tab() {
-    document.querySelector("#uplist").innerHTML = `
+const macth_tab_element = ()=> `
     <div>
         <h2>Choose an body or head then click in MATCH</h1>
         the potentially matches for the custom should appears here.
         <b>To download matched files long press on it or right click on desktop.
     </div>
     `
-}
 
 
 
-function tos_tab() {
-    document.querySelector("#uplist").innerHTML = `
-
+const tos_tab_element =() => `
     <div>
-
-
     <div style="line-height: 1.5; padding: 7px">
-    
-   
         <h1>Terms of services</h1>
-        
         <p>This site aims to centralize hundreds of customizations into a single-page application</p>
         <br>
-       
         <p style="word-wrap: break-word;">
-       
         <b style="color:red">Attention</b> This website offers skins for download. Please be aware that some of these skins could be personal, potentially leading to conflicts if used without the owners' permission. It's advisable to only download skins widely used and recognized by numerous players to avoid direct conflicts with others.
         <br></br>
         <b>Please note</b> that the uploads are added automatically from the web, and distinguishing between personal and non-personal skins might be challenging."
@@ -308,20 +297,14 @@ function tos_tab() {
         <b>We are not responsable for any internal conflicts in game. choose graphics at you own risk</b>
         <p>If you <b>agree</b> you can continue using this aplication if not feel free to leave.</p>
         <br>
+    </div>
+    <div class="margin-left: auto; width: 100%">
 
+     
+    <button style="padding: 12px; display: block; margin-left: auto; " onclick="app.currentPage='head';set_aba(CUSTOM_TAB_TYPE.HEAD);goto_page(0)" class="agree-tos-button"> AGREE</button>
 
     </div>
-    
-     <div class="margin-left: auto; width: 100%">
-
-     <button style="padding: 12px; display: block; margin-left: auto; " onclick="app.currentPage='head';set_aba(CUSTOM_TAB_TYPE.HEAD);goto_page(0)" class="agree-tos-button"> AGREE</button>
-
-     </div>
-
-
-     </div>
-    `
-}
+    </div>`
 
 
 function goto_page(page) {
@@ -346,13 +329,13 @@ function goto_page(page) {
         document.getElementById("button-head").style.background = selectedCOlor
     }
     if (app.currentPage == CUSTOM_TAB_TYPE.MATCH) {
-        macth_tab()
+        document.querySelector("#uplist").innerHTML = macth_tab_element()
         update_pagination(0)
         document.getElementById("button-match").style.background = selectedCOlor
     }
 
     if (app.currentPage == CUSTOM_TAB_TYPE.TERMS_OF_SERVICE) {
-        tos_tab()
+        document.querySelector("#uplist").innerHTML = tos_tab_element()
         update_pagination(0)
 
         document.getElementById("button-terms_of_service").style.color = "white"
@@ -416,29 +399,9 @@ function goto_body(page) {
 
     let bodys_n = bodys.slice(starting_page, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
    
-    bodys_n.forEach((element,index) => {
-        if (!element) return;
-        html = html + `
-
-        <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
-       
-
-        <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${starting_page+index}], ALERT_TYPE.BODY)" class="hoverdark">
-
-        
-        <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
-        <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
-
-            <img id="body" alt="" style="position:relative; left: -64px"  src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
-        </div>
-        <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
-            <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="${app.displayTesterHeadInPreview?npc_tester_infor.head:""}">
-        </div>
-    </div>
-
-    </div>
-        `
-    })
+    html += bodys_n.map((element,index) => {
+        return product_element_body(element, starting_page+index)
+    }).join("")
     if (page + 1 < app.currentTotalPages) {
 
         html += `
@@ -465,6 +428,39 @@ function isGifFile(fileName) {
 
 
 
+
+
+const product_element_head = (image_url, index_in_cache, is_gif) => `
+    <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 8px); max-width: 110px">
+        <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${index_in_cache}], ALERT_TYPE.HEAD )" class="hoverdark">
+            <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
+                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${app.displayTesterHeadInPreview?npc_tester_infor.head:NPC_TESTER_DEFAULT_BODY}" cache-control="max-age=604800">
+            </div>
+            <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px;">
+                <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
+                <img id="head" style="position:absolute; top: -64px" alt="" src="${image_url}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
+            </div>
+            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">${is_gif ? "GIF" : "PNG"}</h1>
+        </div>
+    </div>
+`
+
+const product_element_body = (image_url, index_in_cache) => `
+<div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
+    <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${index_in_cache}], ALERT_TYPE.BODY)" class="hoverdark">
+        <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
+            <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
+            <img id="body" alt="" style="position:relative; left: -64px"  src="${image_url}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
+        </div>
+        <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
+            <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="${app.displayTesterHeadInPreview?npc_tester_infor.head:""}">
+        </div>
+    </div>
+</div>
+`
+
+
+
 function goto_head(page) {
     const heads = cached_images.heads
 
@@ -474,31 +470,8 @@ function goto_head(page) {
     let heads_sliced = heads.slice(starting_page, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
     heads_sliced.forEach((element, index) => {
         if (!element) return;
-
         const gif = isGifFile(extractFileNameFromURL(element))
-        
-
-        html = html + `
-
-
-            <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 8px); max-width: 110px">
-       
-
-            <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${starting_page+index}], ALERT_TYPE.HEAD )" class="hoverdark">
-    
-            
-            <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${app.displayTesterHeadInPreview?npc_tester_infor.head:NPC_TESTER_DEFAULT_BODY}" cache-control="max-age=604800">
-            </div>
-            <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px;">
-                <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
-                <img id="head" style="position:absolute; top: -64px" alt="" src="${element}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
-            </div>
-            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">${gif ? "GIF" : "PNG"}</h1>
-        </div>
-        </div>
-            `
-
+        html = html + product_element_head(element, starting_page+index, gif)
     });
 
     if (page + 1 < app.currentTotalPages) {
@@ -623,6 +596,7 @@ function domatch_upload_click(match_type) {
     }
 }
 function domatch_upload(image) {
+    if (!image)return;
     const matches = cached_images.matches
   
     
