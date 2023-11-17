@@ -83,8 +83,6 @@ function main() {
     close_alert(ALERT_TYPE.HEAD)
     close_alert(ALERT_TYPE.BODY)
     set_aba(CUSTOM_TAB_TYPE.TERMS_OF_SERVICE)
-
-   
 }
 
 
