@@ -419,7 +419,7 @@ function goto_body(page) {
         if (!element) return;
         html = html + `
 
-        <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
+        <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 4px); max-width: 110px">
        
 
         <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${starting_page+index}], ALERT_TYPE.BODY)" class="hoverdark">
