@@ -21,7 +21,8 @@ https://graalcustoms.vercel.app/app.html
 # Its vanilla !
 just download and open an http server in the root folder of this project and it should work correctly.
 
-bodys.json store the array of body url files
+bodys.json store the array of body url files.
+
 heads.json store the array of head url files.
 
-the aplication script is located o script.js
+the aplication script is located at script.js
