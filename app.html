@@ -14,7 +14,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./app-style.css">
-   
+
 
 
 </head>
@@ -47,6 +47,7 @@
     </header>
 
     <div class="choose-tab" style="display: none">
+
         <button>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-gender-female" viewBox="0 0 16 16">
@@ -94,7 +95,8 @@
             BODYS
 
         </button>
-        <button id="button-match" onclick="set_aba(CUSTOM_TAB_TYPE.MATCH); goto_page(0); domatch_upload_click(MATCH_TYPE.BODY)">
+        <button id="button-match"
+            onclick="set_aba(CUSTOM_TAB_TYPE.MATCH); goto_page(0); domatch_upload_click(MATCH_TYPE.BODY)">
             MATCH
 
             <svg fill="currentColor" style="height:1em" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg"
@@ -115,16 +117,11 @@
 
     </div>
 
-    <main class="uplist" id="uplist">
+    <main class="uplist" id="uplist" ondrop="drop_file(event)" ondragover="drag_handler(event)">
 
 
         <div class="uploadcard">
         </div>
-
-
-
-
-
 
     </main>
 
@@ -258,6 +255,7 @@
     </div>
 
 
+
     <div id="upload-view-container">
         <button onclick="toggle_upload_button_click()" id="toggle-upload-tester-view">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down"
@@ -281,36 +279,36 @@
                     onclick="open_alert(document.querySelector('#upload-view').querySelector('#body').src,ALERT_TYPE.BODY)">BODY</button>
 
             </div>
+
+
+            <input type="file" id="file-input" onchange="choose_window_file(event)"  style="display: none;">
             <div
-                style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px; background-color: rgb(223, 209, 209); border-radius: 8px;">
+                style="display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px; background-color: rgb(223, 209, 209); border-radius: 8px; flex-direction: column;">
 
 
-                <div style="height: 80px; cursor:pointer" onclick="" class="hoverdark">
-
-
+                <div style="height: 80px; cursor: pointer">
                     <div
-                        style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-                        <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading">
-                        </div>
-
-                        <img id="body" alt="" style="position:relative; left: -64px"
+                        style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative;">
+                        <div id="loading" style="position: absolute; width: 32px; height: 32px;"
+                            class="body-img-loading"></div>
+                        <img id="body" alt="" style="position: relative; left: -64px;"
                             src="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png"
                             draggable="false" cache-control="max-age=604800"
                             onload="this.parentNode.querySelector('#loading').style.display='none'">
                     </div>
-                    <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px "
+                    <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; top: -80px;"
                         cache-control="max-age=604800">
-                        <img id="head" alt="" style="position:absolute; top: -64px" draggable="false"
+                        <img id="head" alt="" style="position: absolute; top: -64px;" draggable="false"
                             src="https://cdn.discordapp.com/attachments/1171719050687156255/1171759591109963776/olwest_personal_head_graal3715772-100.png?ex=655dd928&is=654b6428&hm=6919854adb919cce46095d415666c522f893ed25336f39e903516f7b42aad4a8&">
                     </div>
                 </div>
-
-
-
+                <b onclick="document.getElementById('file-input').click();" style="cursor:pointer; font-size: 0.6em; position: relative; top: -6px;">CHOOSE FILE</b>
             </div>
+        </input>
 
         </div>
 
+    </div>
 
 </body>
 

@@ -69,7 +69,7 @@ const app = {
 
 
 
-function put_version_on_dom(){
+function put_version_on_dom() {
     const version_element = document.getElementById("version")
     if (version_element)
         version_element.innerText = `version ${app.VERSION}`
@@ -91,7 +91,7 @@ function update_pagination(totalpages, selected) {
     const divs = []
     for (let index = 0; index < totalpages; index++) {
         if (selected == index) {
-           divs.push(`<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`)
+            divs.push(`<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`)
         } else
             divs.push(`<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`)
     }
@@ -164,6 +164,74 @@ function toggle_upload_button_click() {
     }
 
 
+}
+
+
+
+const IMAGE_DIMENSIONS = {
+    HEAD: {
+        width: 32,
+        height: 560
+    },
+    BODY: {
+        width: 128,
+        height: 720
+    },
+}
+
+
+function choose_window_file(event) {
+    const fileInput = event.target;
+    const files = fileInput.files;
+    file_dropped(files)
+}
+
+function file_dropped(files) {
+    if (files.length > 0) {
+        const imagem = files[0];
+        console.log(imagem)
+        const imageUrl = URL.createObjectURL(imagem);
+
+
+
+        var img = new Image();
+        img.onload = () => {
+            const width = img.width;
+            const height = img.height;
+            if (width == IMAGE_DIMENSIONS.HEAD.width && height == IMAGE_DIMENSIONS.HEAD.height) {
+                send_to_tester_directly(imageUrl, UP_TESTER_FILE_TYPE.HEAD)
+                show_test_upload_container()
+            } else
+                if (width == IMAGE_DIMENSIONS.BODY.width && height == IMAGE_DIMENSIONS.BODY.height) {
+                    send_to_tester_directly(imageUrl, UP_TESTER_FILE_TYPE.BODY)
+                    show_test_upload_container()
+                } else {
+                    alert("Invalid image dimensions: " + width + "x" + height + ".")
+                }
+
+            setTimeout(() => {
+
+            }, 1000)
+        }
+
+        img.src = imageUrl
+
+
+    }
+
+}
+
+function drop_file(event) {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+}
+
+
+
+
+
+function drag_handler(event) {
+    event.preventDefault();
 }
 
 
@@ -265,7 +333,7 @@ function set_aba(page) {
 
 
 
-const macth_tab_element = ()=> `
+const macth_tab_element = () => `
     <div>
         <h2>Choose an body or head then click in MATCH</h1>
         the potentially matches for the custom should appears here.
@@ -275,7 +343,7 @@ const macth_tab_element = ()=> `
 
 
 
-const tos_tab_element =() => `
+const tos_tab_element = () => `
     <div>
     <div style="line-height: 1.5; padding: 7px">
         <h1>Terms of services</h1>
@@ -308,7 +376,7 @@ const tos_tab_element =() => `
 
 
 function goto_page(page) {
-    
+
     const selectedCOlor = "var(--tab-selected-bgcolor)"
 
     document.getElementById("button-head").style.background = " var(--main-button-bgcolor)"
@@ -346,7 +414,7 @@ function goto_page(page) {
 }
 
 function send_to_tester_directly(url, type) {
-    
+
     if (type == UP_TESTER_FILE_TYPE.BODY) {
         document.querySelector("#upload-view").querySelector("#body").setAttribute("src", url)
         npc_tester_infor.body = url
@@ -372,7 +440,7 @@ function send_to_tester(type) {
             console.error("Could not get src attr  to send to tester")
         }
     } else if (type == UP_TESTER_FILE_TYPE.HEAD) {
-        
+
         const alert = document.querySelector("#alert-out")
         const head_url = alert.querySelector("#head").getAttribute("src")
         if (head_url) {
@@ -398,9 +466,9 @@ function goto_body(page) {
     const starting_page = page * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD
 
     let bodys_n = bodys.slice(starting_page, (page + 1) * app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD)
-   
-    html += bodys_n.map((element,index) => {
-        return product_element_body(element, starting_page+index)
+
+    html += bodys_n.map((element, index) => {
+        return product_element_body(element, starting_page + index)
     }).join("")
     if (page + 1 < app.currentTotalPages) {
 
@@ -434,7 +502,7 @@ const product_element_head = (image_url, index_in_cache, is_gif) => `
     <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 8px); max-width: 110px">
         <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${index_in_cache}], ALERT_TYPE.HEAD )" class="hoverdark">
             <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
-                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${app.displayTesterHeadInPreview?npc_tester_infor.head:NPC_TESTER_DEFAULT_BODY}" cache-control="max-age=604800">
+                <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${app.displayTesterHeadInPreview ? npc_tester_infor.head : NPC_TESTER_DEFAULT_BODY}" cache-control="max-age=604800">
             </div>
             <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px;">
                 <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
@@ -453,7 +521,7 @@ const product_element_body = (image_url, index_in_cache) => `
             <img id="body" alt="" style="position:relative; left: -64px"  src="${image_url}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
         </div>
         <div style="width: 32px; height: 31px; overflow: hidden; margin: 32px; scale: 1.2;position: relative; top: -80px " cache-control="max-age=604800" >
-            <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="${app.displayTesterHeadInPreview?npc_tester_infor.head:""}">
+            <img id="head" alt="" style="position:absolute; top: -64px" draggable="false" src="${app.displayTesterHeadInPreview ? npc_tester_infor.head : ""}">
         </div>
     </div>
 </div>
@@ -471,7 +539,7 @@ function goto_head(page) {
     html += heads_sliced.map((element, index) => {
         if (!element) return;
         const gif = isGifFile(extractFileNameFromURL(element))
-        return product_element_head(element, starting_page+index, gif)
+        return product_element_head(element, starting_page + index, gif)
     }).join("");
 
     if (page + 1 < app.currentTotalPages) {
@@ -487,7 +555,7 @@ function goto_head(page) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
- 
+
 
     main()
 
@@ -587,7 +655,7 @@ function domatch_upload_click(match_type) {
 
 
     update_pagination(0)
-    
+
 
     if (domatch_upload(url)
     ) {
@@ -596,10 +664,10 @@ function domatch_upload_click(match_type) {
     }
 }
 function domatch_upload(image) {
-    if (!image)return;
+    if (!image) return;
     const matches = cached_images.matches
-  
-    
+
+
     // extract id
     let m = image.match(/graal[^.]+/)
     const id = m == null ? false : m[0].split("-")[0]
@@ -694,7 +762,7 @@ function domatch_upload(image) {
     goto_page(0)
     document.getElementById("button-terms_of_service").click()
 
-   
+
 
 
 
