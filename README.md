@@ -26,3 +26,8 @@ bodys.json store the array of body url files.
 heads.json store the array of head url files.
 
 the aplication script is located at script.js
+
+its well structed view the file script.js
+
+![image](https://github.com/gustavocodigo/graalcustoms/assets/108258194/5ec3bf57-8689-47af-91d3-00fbd138bab5)
+
