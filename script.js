@@ -2,11 +2,15 @@
 // Last update in 2023
 
 
+
+const COMMITS_ENDPOINT = "https://api.github.com/repos/gustavocodigo/graalcustoms/commits?per_page=20"
+
 const CUSTOM_TAB_TYPE = {
     HEAD: "tab_head",
     BODY: "tab_body",
     MATCH: "tab_match",
-    TERMS_OF_SERVICE: "tab_terms_of_service"
+    TERMS_OF_SERVICE: "tab_terms_of_service",
+    UPDATES_CHANGELOGS: "tab_updates_changelogs"
 }
 
 
@@ -328,6 +332,7 @@ function set_aba(page) {
     if (page == CUSTOM_TAB_TYPE.BODY) {
         update_pagination(Math.ceil(bodys.length / app.MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD), app.currentBodyPage)
     }
+
     app.currentPage = page
 }
 
@@ -375,7 +380,39 @@ const tos_tab_element = () => `
     </div>`
 
 
-function goto_page(page) {
+
+const updates_tab = async () => {
+    try {
+        
+        const commits = await (await fetch(COMMITS_ENDPOINT)).json()
+        const cards = commits.map((commit)=>{
+            return `<div style="border: 1px solid gray; border-radius: 1px; padding: 8px; display: flex; align-items: center;"><img src="https://github.com/${commit.author.login}.png" width=64>
+            <div>
+
+            <a href="https://github.com/${commit.author.login}" target="_blank"><h4> ${commit.author.login}</h4></a>
+            
+         
+            <div><b>commit:</b> ${commit.commit.message}</div>
+            <p style="color: #101010; font-size: 0.6em;">${commit.commit.author.date}</p>
+            
+            </div>
+            </div>`
+        })
+        return `
+        <div style="width: 100%;">
+        <div><h1 style="margin-bottom: 10px;font-size: 0.7em;">UPDATES CHANGELOGS:</h1></div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">${cards.join("\n")}</div>
+        </div>
+        `
+    }catch(e) {
+        console.log(e)
+        return `<div>Could not load the updates page.</div>`
+    }
+   
+
+}
+
+async function goto_page(page) {
 
     const selectedCOlor = "var(--tab-selected-bgcolor)"
 
@@ -383,6 +420,7 @@ function goto_page(page) {
     document.getElementById("button-body").style.background = "var(--main-button-bgcolor)"
     document.getElementById("button-match").style.background = "var(--main-button-bgcolor)"
     document.getElementById("button-terms_of_service").style.color = "#AAAAAA"
+    document.getElementById("button-updates-tab").style.color = "#AAAAAA"
 
     update_pagination(app.currentTotalPages, page)
     if (app.currentPage == CUSTOM_TAB_TYPE.BODY) {
@@ -407,6 +445,12 @@ function goto_page(page) {
         update_pagination(0)
 
         document.getElementById("button-terms_of_service").style.color = "white"
+    }
+
+    if (app.currentPage == CUSTOM_TAB_TYPE.UPDATES_CHANGELOGS) {
+        document.getElementById("button-updates-tab").style.color = "white"
+        document.querySelector("#uplist").innerHTML = await updates_tab()
+        update_pagination(0)
     }
 
 

@@ -111,6 +111,7 @@ main {
     background-color: rgb(220, 216, 216);
     display: flex;
     width: 100%;
+    transition: 1s;
 }
 
 .choose-tab>button {
