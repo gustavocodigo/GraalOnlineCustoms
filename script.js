@@ -386,7 +386,7 @@ const updates_tab = async () => {
         
         const commits = await (await fetch(COMMITS_ENDPOINT)).json()
         const cards = commits.map((commit)=>{
-            return `<div style="border: 1px solid gray; border-radius: 1px; padding: 8px; display: flex; align-items: center;"><img src="https://github.com/${commit.author.login}.png" width=64>
+            return `<div style="border: 1px solid gray; border-radius: 1px; padding: 8px; display: flex; align-items: center;"><img src="https://github.com/${commit.author.login}.png" width=64 height=64 alt="${commit.author.login}">
             <div>
 
             <a href="https://github.com/${commit.author.login}" target="_blank"><h4> ${commit.author.login}</h4></a>
