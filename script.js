@@ -97,7 +97,7 @@ function update_pagination(totalpages, selected) {
         if (selected == index) {
             divs.push(`<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`)
         } else
-            divs.push(`<div onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`)
+            divs.push(`<div class="waves-effect waves-light" onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`)
     }
     document.querySelector("#pagination-div").innerHTML = divs.join("")
 }
@@ -340,7 +340,7 @@ function set_aba(page) {
 
 const macth_tab_element = () => `
     <div>
-        <h2>Choose an body or head then click in MATCH</h1>
+        <h2 class="flow-text">Choose an body or head then click in MATCH</h1>
         the potentially matches for the custom should appears here.
         <b>To download matched files long press on it or right click on desktop.
     </div>
@@ -351,7 +351,7 @@ const macth_tab_element = () => `
 const tos_tab_element = () => `
     <div>
     <div style="line-height: 1.5; padding: 7px">
-        <h1>Terms of services</h1>
+        <h1 class="flow-text">Terms of services</h1>
         <p>This site aims to centralize hundreds of customizations into a single-page application</p>
         <br>
         <p style="word-wrap: break-word;">
@@ -389,7 +389,7 @@ const updates_tab = async () => {
             return `<div style="border: 1px solid gray; border-radius: 1px; padding: 8px; display: flex; align-items: center;"><img src="https://github.com/${commit.author.login}.png" width=64 height=64 alt="${commit.author.login}">
             <div>
 
-            <a href="https://github.com/${commit.author.login}" target="_blank"><h4> ${commit.author.login}</h4></a>
+            <a href="https://github.com/${commit.author.login}" target="_blank"><h4 class="flow-text"> ${commit.author.login}</h4></a>
             
          
             <div><b>commit:</b> ${commit.commit.message}</div>
@@ -401,7 +401,7 @@ const updates_tab = async () => {
         return `
         <div style="width: 100%;">
         <div><h1 style="margin-bottom: 10px;font-size: 0.7em;">UPDATES CHANGELOGS:</h1></div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">${cards.join("\n")}</div>
+        <div style="display: flex; flex-direction: column; ">${cards.join("\n")}</div>
         </div>
         `
     }catch(e) {
@@ -544,7 +544,7 @@ function isGifFile(fileName) {
 
 const product_element_head = (image_url, index_in_cache, is_gif) => `
     <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 8px); max-width: 110px">
-        <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${index_in_cache}], ALERT_TYPE.HEAD )" class="hoverdark">
+        <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${index_in_cache}], ALERT_TYPE.HEAD )" class="hoverdark waves-effect waves-light">
             <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
                 <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${app.displayTesterHeadInPreview ? npc_tester_infor.head : NPC_TESTER_DEFAULT_BODY}" cache-control="max-age=604800">
             </div>
@@ -559,7 +559,7 @@ const product_element_head = (image_url, index_in_cache, is_gif) => `
 
 const product_element_body = (image_url, index_in_cache) => `
 <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 110px">
-    <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${index_in_cache}], ALERT_TYPE.BODY)" class="hoverdark">
+    <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${index_in_cache}], ALERT_TYPE.BODY)" class="hoverdark waves-effect waves-light">
         <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
             <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>
             <img id="body" alt="" style="position:relative; left: -64px"  src="${image_url}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
@@ -725,7 +725,7 @@ function domatch_upload(image) {
             
            
             <div style="width:100%">
-            <h2>Choose an body or head then click in MATCH</h1>
+            <h2 class="flow-text">Choose an body or head then click in MATCH</h1>
             the potentially matches for the custom should appears here.
             </br><b>To download matched files long press on it or right click on desktop.<br>
             <b style="color:red">Warning</b><b> the matche uses detuction on filename so look if it combine with the requested file</b>

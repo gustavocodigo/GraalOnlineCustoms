@@ -36,10 +36,12 @@
             <img id="head" style="position:relative; top: -64px"
                 src="https://classiccachecloudcor.quattroplay.com/custom_heads/classic_personal_head_graal6521699-104.gif">
         </div>
-        <div>
-            <h1 class="title">Graal Customs !</h1>
-
-            <p style="font-weight: 100; font-size: 0.7em;" id="version">Version</p>
+        <div class="flow-text">
+            <div>
+                <p class="flow-text">Graal Customs !</p>
+                <p style="font-weight: 100; font-size: 0.7em;" id="version">Version</p>
+            </div>
+         
         </div>
 
 
@@ -95,14 +97,14 @@
 
     <div class="choose-tab2">
 
-        <button onclick="set_aba(CUSTOM_TAB_TYPE.HEAD); goto_page(app.currentHeadPage)" id="button-head">
-            <div style="width: 32px; height: 31px; overflow: hidden;  scale: 0.8;">
+        <button onclick="set_aba(CUSTOM_TAB_TYPE.HEAD); goto_page(app.currentHeadPage)" id="button-head" class="waves-effect waves-light">
+            <div style="width: 32px; height: 31px; overflow: hidden;  scale: 0.8; ">
                 <img id="head" style="position:relative; top: -64px"
                     src="https://cdn.discordapp.com/attachments/1171719050687156255/1171757836682932244/olwest_personal_head_graal3283692-158.png?ex=655dd786&is=654b6286&hm=b929d4b60baf2189cf37e5c971b39ff4e446af18302aef9d3705d95baf381bcb&">
             </div>
             HEADS
         </button>
-        <button onclick="set_aba(CUSTOM_TAB_TYPE.BODY); goto_page(app.currentBodyPage)" id="button-body">
+        <button onclick="set_aba(CUSTOM_TAB_TYPE.BODY); goto_page(app.currentBodyPage)" id="button-body" class="waves-effect waves-light">
 
             <div style=" width:32px; height:32px; overflow:hidden; scale: 0.8">
 
@@ -114,7 +116,7 @@
 
         </button>
         <button id="button-match"
-            onclick="set_aba(CUSTOM_TAB_TYPE.MATCH); goto_page(0); domatch_upload_click(MATCH_TYPE.BODY)">
+            onclick="set_aba(CUSTOM_TAB_TYPE.MATCH); goto_page(0); domatch_upload_click(MATCH_TYPE.BODY)" class="waves-effect waves-light">
             MATCH
 
             <svg fill="currentColor" style="height:1em" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +150,7 @@
     <div class="alert-out" id="alert-out" style="display: none">
         <div class="alert">
             <div>
-                <h3 class="flow-text">Wish to download this file ?</h3>
+                <h3 class="flow-text" style="font-size: 0.7em">Wish to download this file ?</h3>
 
             </div>
 
@@ -177,21 +179,21 @@
             <div
                 style=" flex-direction: column; font-size: 0.9em;  gap: 4px; margin: 12px 0px; border:1px solid gray; padding: 4px">
 
-                <h4>Graal Online Upload sites:</h4>
+                <h4  style="font-size: 0.7em">Graal Online Upload sites:</h4>
 
 
                 <a href="http://loginolwest1.graalonline.com:8080/submit.html" target="_blank">
-                    Graal Olwest Upload
-                </a></br>
+                    Graal Olwest
+                </a>,
                 <a href="https://zoneupload.graalonline.com/" target="_blank">
-                    Graal Zone Upload
-                </a></br>
+                    Graal Zone
+                </a>,
                 <a href="https://classicupload.graalonline.com/" target="_blank">
-                    Graal Classic Upload
-                </a></br>
+                    Graal Classic
+                </a>,
                 <a href="https://eraupload.graalonline.com/" target="_blank">
-                    Graal Era Upload
-                </a></br>
+                    Graal Era
+                </a>
             </div>
             <div class="download-div" style="display: flex; width: 100%;">
                 <button onclick="domatch_upload_click(MATCH_TYPE.HEAD); close_alert(ALERT_TYPE.HEAD);">Matches</button>
@@ -218,7 +220,7 @@
     <div class="alert-out" id="alert-out-body" style="display: none">
         <div class="alert">
             <div>
-                <h3>Wish to download this file ?</h3>
+                <h3 class="flow-text" style="font-size: 0.7em">Wish to download this file ?</h3>
 
             </div>
             <div style="height: 140px; overflow-y: scroll;">
@@ -237,19 +239,19 @@
 
 
             <div
-                style="display: flex; flex-direction: column; font-size: 0.9; gap: 6px; margin: 8px 0px; border:1px solid gray; padding: 4px">
-                <h4>Graal Online Upload sites:</h4>
+                style=" font-size: 0.9; gap: 6px; margin: 8px 0px; border:1px solid gray; padding: 4px">
+                <h4 class="flow-text" style="font-size: 0.7em">Graal Online Upload sites:</h4>
                 <a href="http://loginolwest1.graalonline.com:8080/submit.html" target="_blank">
-                    Graal Olwest Upload
-                </a>
+                    Graal Olwest
+                </a>,
                 <a href="https://zoneupload.graalonline.com/" target="_blank">
-                    Graal Zone Upload
-                </a>
+                    Graal Zone
+                </a>,
                 <a href="https://classicupload.graalonline.com/" target="_blank">
-                    Graal Classic Upload
-                </a>
+                    Graal Classic
+                </a>,
                 <a href="https://eraupload.graalonline.com/" target="_blank">
-                    Graal Era Upload
+                    Graal Era
                 </a>
             </div>
             <div class="download-div" style="display: flex; width: 100%">
@@ -292,9 +294,9 @@
             </p>
             <div style="display: flex; flex-direction: column; gap:4px">
                 <button
-                    onclick="open_alert(document.querySelector('#upload-view').querySelector('#head').src,ALERT_TYPE.HEAD)">HEAD</button>
+                    onclick="open_alert(document.querySelector('#upload-view').querySelector('#head').src,ALERT_TYPE.HEAD)" class="waves-effect waves-light">HEAD</button>
                 <button
-                    onclick="open_alert(document.querySelector('#upload-view').querySelector('#body').src,ALERT_TYPE.BODY)">BODY</button>
+                    onclick="open_alert(document.querySelector('#upload-view').querySelector('#body').src,ALERT_TYPE.BODY)" class="waves-effect waves-light">BODY</button>
 
             </div>
 
