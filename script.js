@@ -95,11 +95,20 @@ function update_pagination(totalpages, selected) {
     const divs = []
     for (let index = 0; index < totalpages; index++) {
         if (selected == index) {
-            divs.push(`<div onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`)
+            divs.push(`<div id="selected-div" onclick="" style="background-color: #00000099; color: white; border-radius: 12px">${index + 1}</div>`)
         } else
             divs.push(`<div class="waves-effect waves-light" onclick="goto_page(${index}); update_pagination(${totalpages}, ${index})">${index + 1}</div>`)
     }
-    document.querySelector("#pagination-div").innerHTML = divs.join("")
+    const pagination_div = document.querySelector("#pagination-div")
+    pagination_div.innerHTML = divs.join("")
+    const selected_div = pagination_div.querySelector("#selected-div")
+    if (selected_div) {
+        selected_div.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.log("Could not get page")
+    }
+
+    //selected_div.scrollIntoView({ behavior: 'smooth' });
 }
 
 
@@ -383,9 +392,9 @@ const tos_tab_element = () => `
 
 const updates_tab = async () => {
     try {
-        
+
         const commits = await (await fetch(COMMITS_ENDPOINT)).json()
-        const cards = commits.map((commit)=>{
+        const cards = commits.map((commit) => {
             return `<div style="border: 1px solid gray; border-radius: 1px; padding: 8px; display: flex; align-items: center;"><img src="https://github.com/${commit.author.login}.png" width=64 height=64 alt="${commit.author.login}">
             <div>
 
@@ -404,11 +413,11 @@ const updates_tab = async () => {
         <div style="display: flex; flex-direction: column; ">${cards.join("\n")}</div>
         </div>
         `
-    }catch(e) {
+    } catch (e) {
         console.log(e)
         return `<div>Could not load the updates page.</div>`
     }
-   
+
 
 }
 
