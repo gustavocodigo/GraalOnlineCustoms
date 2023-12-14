@@ -33,7 +33,7 @@ const UP_TESTER_FILE_TYPE = {
   BODY: "tester_body",
 };
 
-const NPC_TESTER_DEFAULT_BODY ="https://classiccachecloudcor.quattroplay.com/custom_bodys/classic_personal_body_graal3799034-578.png";
+const NPC_TESTER_DEFAULT_BODY ="https://cdn.discordapp.com/attachments/1171693403654865007/1171707612207783996/olwest_personal_body_graal4937867-248.png?ex=655da8c0&is=654b33c0&hm=d8f18a506bccb564a74911a8f33ecaa1051d2ca4260670cc82ac287a3d3c8dcc&";
 const NPC_TESTER_DEFAULT_HEAD = "";
 
 const npc_tester_infor = {
