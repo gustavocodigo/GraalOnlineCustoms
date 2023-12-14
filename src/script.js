@@ -62,8 +62,8 @@ const cached_images = {
 
 
 const runtime = {
-    NORMAL_BROWSER,
-    ANDROID_WEBVIEW
+    NORMAL_BROWSER : "runtime_normal",
+    ANDROID_WEBVIEW: "runtime_android_webview"
 }
 
 const app = {
