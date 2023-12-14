@@ -135,14 +135,12 @@ function extractFileNameFromURL(url) {
 }
 
 function downloadFIle(url, nomeDoArquivo) {
-    if ( app.runtime != runtime.NORMAL_BROWSER) {
-        window.alert("is webview")
+    if ( app.runtime == runtime.ANDROID_WEBVIEW) {
         if (typeof Android !== 'undefined') {
-            window.alert("Android is defined")
+            download_from_android_webview(url, nomeDoArquivo)
         }else{
-            window.alert("No android object")
+            window.alert("Error android instance is not defined")
         }
-        download_from_android_webview(url, nomeDoArquivo)
         return;
     }
     if (nomeDoArquivo == null) {
