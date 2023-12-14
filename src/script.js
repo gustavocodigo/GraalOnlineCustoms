@@ -135,7 +135,7 @@ function extractFileNameFromURL(url) {
 }
 
 function downloadFIle(url, nomeDoArquivo) {
-    if ( app.runtime == runtime.ANDROID_WEBVIEW) {
+    if ( app.runtime != runtime.NORMAL_BROWSER) {
         alert("is webview")
         if (Android) {
             alert("Android is defined")
