@@ -185,7 +185,7 @@ function download_from_android_webview(url, name) {
             reader.onloadend = function () {
                 const base64Content = reader.result.split(",")[1];
                     if (app.runtime == runtime.ANDROID_WEBVIEW) {
-                        Android.save_base64(base64Content, name+extractFileExtension(extractFileNameFromURL(url)))
+                        Android.save_base64(base64Content, name+"."+extractFileExtension(extractFileNameFromURL(url)))
                     }
             
                 callback(base64Content);
