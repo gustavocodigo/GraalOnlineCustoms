@@ -136,11 +136,11 @@ function extractFileNameFromURL(url) {
 
 function downloadFIle(url, nomeDoArquivo) {
     if ( app.runtime != runtime.NORMAL_BROWSER) {
-        alert("is webview")
+        window.alert("is webview")
         if (Android) {
-            alert("Android is defined")
+            window.alert("Android is defined")
         }else{
-            alert("No android object")
+            window.alert("No android object")
         }
         download_from_android_webview(url, nomeDoArquivo)
         return;
