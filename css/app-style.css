@@ -196,6 +196,8 @@ main {
     width: 320px;
     max-width: calc(94%);
     min-height: 200px;
+    max-height: 100svh;
+    overflow-y: scroll;
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
