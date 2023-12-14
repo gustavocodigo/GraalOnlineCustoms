@@ -35,8 +35,8 @@ body {
     margin: auto;
     border: 1px solid black;
     border-top: 0px;
-    max-height: 100svh;
-    min-height: 100svh;
+    max-height: 100vh;
+    min-height: 100vh;
     user-select: none;
 }
 
@@ -179,7 +179,7 @@ main {
 
 
 .alert-out {
-    height: 100svh;
+    height: 100vh;
     width: 100%;
     position: fixed;
     z-index: 5;
@@ -196,7 +196,7 @@ main {
     width: 320px;
     max-width: calc(94%);
     min-height: 200px;
-    max-height: 100svh;
+    max-height: 100vh;
     overflow-y: scroll;
     background-color: rgb(255, 255, 255);
     display: flex;

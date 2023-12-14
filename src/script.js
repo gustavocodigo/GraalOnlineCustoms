@@ -75,7 +75,7 @@ const app = {
     currentTotalPages: 0,
     displayTesterHeadInPreview: false,
     displayTesterBodyInPreview: false,
-    runtime: runtime.NORMAL_BROWSER
+    runtime: 0
 }
 
 
@@ -137,7 +137,7 @@ function extractFileNameFromURL(url) {
 function downloadFIle(url, nomeDoArquivo) {
     if ( app.runtime != runtime.NORMAL_BROWSER) {
         window.alert("is webview")
-        if (Android) {
+        if (Android != undefined) {
             window.alert("Android is defined")
         }else{
             window.alert("No android object")
