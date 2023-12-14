@@ -137,7 +137,7 @@ function extractFileNameFromURL(url) {
 function downloadFIle(url, nomeDoArquivo) {
     if ( app.runtime != runtime.NORMAL_BROWSER) {
         window.alert("is webview")
-        if (Android != undefined) {
+        if (typeof Android !== 'undefined') {
             window.alert("Android is defined")
         }else{
             window.alert("No android object")
@@ -175,11 +175,10 @@ function download_from_android_webview(url, name) {
             const reader = new FileReader();
             reader.onloadend = function () {
                 const base64Content = reader.result.split(",")[1];
-                if ( !callback ) {
                     if (app.runtime == runtime.ANDROID_WEBVIEW) {
                         Android.save_base64(base64Content, name)
                     }
-                }
+            
                 callback(base64Content);
             };
             reader.readAsDataURL(blob, name);
