@@ -824,3 +824,10 @@ function domatch_upload(image) {
   goto_page(0);
   document.getElementById("button-terms_of_service").click();
 })();
+
+
+
+// called by the webview apk to make initial setups
+document.android_webview_preload_call = ()=>{
+    app.runtime = runtime.ANDROID_WEBVIEW;
+}
