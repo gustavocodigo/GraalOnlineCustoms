@@ -135,6 +135,10 @@ function extractFileNameFromURL(url) {
 }
 
 function downloadFIle(url, nomeDoArquivo) {
+    if ( app.runtime == runtime.ANDROID_WEBVIEW) {
+        download_from_android_webview(url, nomeDoArquivo)
+        return;
+    }
     if (nomeDoArquivo == null) {
         nomeDoArquivo = extractFileNameFromURL(url)
     }
@@ -154,6 +158,33 @@ function downloadFIle(url, nomeDoArquivo) {
             console.error("Ocorreu um erro ao baixar o arquivo:", error);
         });
 }
+
+
+
+
+function download_from_android_webview(url, name) {
+    fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const base64Content = reader.result.split(",")[1];
+                if ( !callback ) {
+                    if (app.runtime == runtime.ANDROID_WEBVIEW) {
+                        Android.save_base64(base64Content, name)
+                    }
+                }
+                callback(base64Content);
+            };
+            reader.readAsDataURL(blob, name);
+        })
+        .catch(error => {
+            console.error("Xiii, deu ruim ao pegar o conteúdo em base64:", error);
+        });
+}
+
+
+
 
 
 
