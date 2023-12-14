@@ -60,6 +60,12 @@ const cached_images = {
     matches: []
 }
 
+
+const runtime = {
+    NORMAL_BROWSER,
+    ANDROID_WEBVIEW
+}
+
 const app = {
     VERSION: "0.0.2",
     MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 54,
@@ -68,7 +74,8 @@ const app = {
     currentBodyPage: 0,
     currentTotalPages: 0,
     displayTesterHeadInPreview: false,
-    displayTesterBodyInPreview: false
+    displayTesterBodyInPreview: false,
+    runtime: runtime.NORMAL_BROWSER
 }
 
 
