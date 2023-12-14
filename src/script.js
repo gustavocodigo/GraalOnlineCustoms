@@ -75,7 +75,7 @@ const app = {
     currentTotalPages: 0,
     displayTesterHeadInPreview: false,
     displayTesterBodyInPreview: false,
-    runtime: 0
+    runtime: runtime.NORMAL_BROWSER
 }
 
 
