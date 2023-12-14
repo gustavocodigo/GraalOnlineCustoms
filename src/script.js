@@ -134,6 +134,17 @@ function extractFileNameFromURL(url) {
     }
 }
 
+
+function extractFileExtension(fileName) {
+    try {
+        const extension = fileName.split('.').pop();
+        return extension.toLowerCase(); // Retorna a extensão em minúsculas, opcional
+    } catch (error) {
+        console.error("Erro ao extrair a extensão do arquivo: " + error);
+        return null;
+    }
+}
+
 function downloadFIle(url, nomeDoArquivo) {
     if ( app.runtime == runtime.ANDROID_WEBVIEW) {
         if (typeof Android !== 'undefined') {
@@ -174,7 +185,7 @@ function download_from_android_webview(url, name) {
             reader.onloadend = function () {
                 const base64Content = reader.result.split(",")[1];
                     if (app.runtime == runtime.ANDROID_WEBVIEW) {
-                        Android.save_base64(base64Content, name)
+                        Android.save_base64(base64Content, name+extractFileExtension(extractFileNameFromURL(url)))
                     }
             
                 callback(base64Content);
