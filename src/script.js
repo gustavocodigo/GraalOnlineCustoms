@@ -52,6 +52,11 @@ const cached_images = {
   matches: [],
 };
 
+
+const cached_data = {
+    commits_data: []
+}
+
 const runtime = {
   NORMAL_BROWSER: "runtime_normal",
   ANDROID_WEBVIEW: "runtime_android_webview",
@@ -405,7 +410,14 @@ const tos_tab_element = () => `
 
 const updates_tab = async () => {
   try {
-    const commits = await (await fetch(COMMITS_ENDPOINT)).json();
+    let commits =[]
+    if (cached_data.commits_data.length>0) {
+        commits = cached_data.commits_data
+    }else{
+        // only will run 1 time
+        commits = await (await fetch(COMMITS_ENDPOINT)).json();
+        cached_data.commits_data = commits
+    } 
     const cards = commits.map((commit) => {
       return `<div style="border: 1px solid gray; border-radius: 1px; padding: 8px; display: flex; align-items: center;"><img src="https://github.com/${commit.author.login}.png" width=64 height=64 alt="${commit.author.login}">
             <div>
