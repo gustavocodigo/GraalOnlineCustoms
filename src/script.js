@@ -64,7 +64,7 @@ const runtime = {
 
 const app = {
   VERSION: "0.0.2",
-  MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 54,
+  MAX_ELEMENTS_PER_PAGE_BODY_AND_HEAD: 27,
   currentPage: CUSTOM_TAB_TYPE.HEAD,
   currentHeadPage: 0,
   currentBodyPage: 0,
