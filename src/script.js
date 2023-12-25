@@ -585,7 +585,7 @@ const product_element_head = (image_url, index_in_cache, is_gif) => `
             </div>
 
             <div>
-        <h1 style="position:absolute; top: 0; left: 0; font-size: 12px; margin: 0;">${
+        <h1 style="position:absolute; top: 0; left: 0; font-size: 12px; margin: 7px;">${
           is_gif ? "GIF" : "PNG"
         }</h1>
         </div>
