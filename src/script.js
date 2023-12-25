@@ -570,6 +570,8 @@ function isGifFile(fileName) {
 const product_element_head = (image_url, index_in_cache, is_gif) => `
     <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 180px">
         <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${index_in_cache}], ALERT_TYPE.HEAD )" class="hoverdark waves-effect waves-light">
+        
+       
             <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; ">
                 <img id="body" style="position:relative; left: -64px" alt="" draggable="false"  src="${
                   app.displayTesterHeadInPreview
@@ -581,9 +583,13 @@ const product_element_head = (image_url, index_in_cache, is_gif) => `
                 <div id="loading" style="position:absolute; width:32px; height:32px;" class="head-img-loading"> </div>
                 <img id="head" style="position:absolute; top: -64px" alt="" src="${image_url}" draggable="false" cache-control="max-age=604800" onload="this.parentNode.querySelector('#loading').style.display='none'">
             </div>
-            <h1 style="position:absolute; top: 0; left: 0; font-size: 12px;">${
-              is_gif ? "GIF" : "PNG"
-            }</h1>
+
+            <div>
+        <h1 style="position:absolute; top: 0; left: 0; font-size: 12px; margin: 0;">${
+          is_gif ? "GIF" : "PNG"
+        }</h1>
+        </div>
+           
         </div>
     </div>
 `;
