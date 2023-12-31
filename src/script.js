@@ -446,14 +446,14 @@ const updates_tab = async () => {
 };
 
 async function goto_page(page) {
-  const selectedCOlor = "var(--tab-selected-bgcolor)";
+  const selectedCOlor = "#d77a14";
 
-  document.getElementById("button-head").style.background =
-    " var(--main-button-bgcolor)";
-  document.getElementById("button-body").style.background =
-    "var(--main-button-bgcolor)";
-  document.getElementById("button-match").style.background =
-    "var(--main-button-bgcolor)";
+  document.getElementById("button-head").style.border =
+    "4px solid transparent";
+  document.getElementById("button-body").style.border =
+    "4px solid transparent";
+  document.getElementById("button-match").style.border =
+    "4px solid transparent";
   document.getElementById("button-terms_of_service").style.color = "#AAAAAA";
   document.getElementById("button-updates-tab").style.color = "#AAAAAA";
 
@@ -461,17 +461,17 @@ async function goto_page(page) {
   if (app.currentPage == CUSTOM_TAB_TYPE.BODY) {
     goto_body(page);
 
-    document.getElementById("button-body").style.background = selectedCOlor;
+    document.getElementById("button-body").style.borderBottom = "4px solid "+selectedCOlor;
   }
   if (app.currentPage == CUSTOM_TAB_TYPE.HEAD) {
     goto_head(page);
 
-    document.getElementById("button-head").style.background = selectedCOlor;
+    document.getElementById("button-head").style.borderBottom = "4px solid "+selectedCOlor;
   }
   if (app.currentPage == CUSTOM_TAB_TYPE.MATCH) {
     document.querySelector("#uplist").innerHTML = macth_tab_element();
     update_pagination(0);
-    document.getElementById("button-match").style.background = selectedCOlor;
+    document.getElementById("button-match").style.borderBottom = "4px solid "+selectedCOlor;
   }
 
   if (app.currentPage == CUSTOM_TAB_TYPE.TERMS_OF_SERVICE) {

@@ -1,10 +1,10 @@
 :root {
     --main-color: #121212;
-    --header-bgcolor: #1c1c1c;
-    --tabs-bgcolor: #000000;
+    --header-bgcolor: #0d1d3a;
+    --tabs-bgcolor: #0d1d3a;
     --body-bgcolor: #ffffff;
-    --main-button-bgcolor: #0e0e0e;
-    --tab-selected-bgcolor: #252525;
+    --main-button-bgcolor: #0d1d3a;
+    --tab-selected-bgcolor: #0d1d3a;
     --elements-persent: 33%;
 }
 
@@ -43,7 +43,7 @@ body {
     flex-direction: column;
     max-width: 800px;
     margin: auto;
-    border: 1px solid black;
+    border: 4px solid var(--tab-selected-bgcolor);
     border-top: 0px;
     max-height: 100vh;
     min-height: 100vh;
@@ -157,7 +157,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(171, 171, 171);
+    background-color: var(--tab-selected-bgcolor);
     gap: 6%;
 
 
