@@ -568,7 +568,7 @@ function isGifFile(fileName) {
 }
 
 const product_element_head = (image_url, index_in_cache, is_gif) => `
-    <div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 180px">
+    <div style=";display: flex; align-items: center; justify-content: center; width:calc(var(--elements-persent) - 10px);">
         <div style="height: 80px; cursor:pointer; position: relative; " onclick="open_alert(cached_images.heads[${index_in_cache}], ALERT_TYPE.HEAD )" class="hoverdark waves-effect waves-light">
         
        
@@ -595,7 +595,7 @@ const product_element_head = (image_url, index_in_cache, is_gif) => `
 `;
 
 const product_element_body = (image_url, index_in_cache) => `
-<div style=";display: flex; align-items: center; justify-content: center; width:calc(33% - 10px); max-width: 180px">
+<div style=";display: flex; align-items: center; justify-content: center; width:calc(var(--elements-persent) - 10px);">
     <div style="height: 80px; cursor:pointer" onclick="open_alert(cached_images.bodys[${index_in_cache}], ALERT_TYPE.BODY)" class="hoverdark waves-effect waves-light">
         <div style="width: 32px; height: 32px; overflow: hidden; margin: 32px; scale: 1.2; position: relative; " onerror="alert(0)">
             <div id="loading" style="position:absolute; width:32px; height:32px;" class="body-img-loading"> </div>

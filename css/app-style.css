@@ -5,15 +5,25 @@
     --body-bgcolor: #ffffff;
     --main-button-bgcolor: #0e0e0e;
     --tab-selected-bgcolor: #252525;
+    --elements-persent: 33%;
 }
-
-
 
 
 .download-div {
     gap: 12px
 }
 
+@media only screen and (min-width: 690px) {
+    :root {
+        --elements-persent: 25%;
+        }
+}
+
+@media only screen and (min-width: 992px) {
+    :root {
+    --elements-persent: 20%;
+    }
+}
 
 .download-div>button {
     flex: 1;
