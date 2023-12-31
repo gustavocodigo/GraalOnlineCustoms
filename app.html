@@ -33,7 +33,7 @@
 <body>
     <header class="header">
         <div>
-            <img id="head" 
+            <img 
                 src="./assets/logo.png" height="64">
         </div>
        
@@ -327,14 +327,30 @@
 
     <div id="splash"style="background-color: var(--header-bgcolor); position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; display: flex; align-items: center; justify-content: center; color: white; z-index: 5000; transition: 1s;">
         <div style="display: flex; flex-direction: column;">
-            <p style="text-align: center; font-size: 1.5em;">Powered By</p>
-            <b style="text-align: center; font-size: 2em;">JGustavo</b>
+            <div style="text-align: center;">
+                <h1 style="font-size: 2em;">Graal Customs</h1>
+
+            <div style="text-align: center; font-size: 0.8em;">By
+            <b style="text-align: center; font-size: 1em;">JGustavo</b>
+            </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="inner-progress-bar" id="initial-progress-bar-inner"></div>
+            </div>
+
+           
+         
         </div>
      
         <script>
             setTimeout(()=>{
+                document.getElementById("initial-progress-bar-inner").style.width="100%"
+            },100)
+
+            setTimeout(()=>{
                 document.getElementById("splash").style.display = "none";
-            }, 4000)
+            }, 5000)
         </script>
     </div>
 </body>
