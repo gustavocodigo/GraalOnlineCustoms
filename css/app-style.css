@@ -205,7 +205,7 @@ main {
 
 .alert {
     width: 320px;
-    max-width: calc(94%);
+    max-width: calc(80%);
     min-height: 200px;
     max-height: 100vh;
     overflow-y: scroll;
