@@ -5,6 +5,7 @@
     --body-bgcolor: #ffffff;
     --main-button-bgcolor: #0d1d3a;
     --tab-selected-bgcolor: #0d1d3a;
+    --popup-modal-bg: #f4f8ff;
     --elements-persent: 33.3%;
 }
 
@@ -208,14 +209,14 @@ main {
     min-height: 200px;
     max-height: 100vh;
     overflow-y: scroll;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--popup-modal-bg);
     display: flex;
     flex-direction: column;
     padding: 12px;
     justify-content: space-between;
-    border-radius: 6px;
-    color: rgb(36, 36, 36);
-
+    color: black;
+    border: 10px solid var(--tab-selected-bgcolor);
+    border-radius: 40px 0px 20px 20px;
 }
 
 .alert img {
@@ -225,15 +226,16 @@ main {
 
 
  a {
-    color: rgb(30, 30, 30);
+    color: rgb(0, 171, 194);
 }
 
 .alert button {
-    background-color: rgb(147, 5, 5);
+    background-color: var(--main-button-bgcolor);
     color: white;
     outline: none;
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
+  
 }
 
 .alert button:hover {
